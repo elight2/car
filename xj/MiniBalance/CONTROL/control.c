@@ -1,107 +1,114 @@
 /***********************************************
-¹«Ë¾£ºÂÖÈ¤¿Æ¼¼(¶«Ý¸)ÓÐÏÞ¹«Ë¾
-Æ·ÅÆ£ºWHEELTEC
-¹ÙÍø£ºwheeltec.net
-ÌÔ±¦µêÆÌ£ºshop114407458.taobao.com 
-ËÙÂôÍ¨: https://minibalance.aliexpress.com/store/4455017
-°æ±¾£ºV1.0
-ÐÞ¸ÄÊ±¼ä£º2023-05-25
+ï¿½ï¿½Ë¾ï¿½ï¿½ï¿½ï¿½È¤ï¿½Æ¼ï¿½(ï¿½ï¿½Ý¸)ï¿½ï¿½ï¿½Þ¹ï¿½Ë¾
+Æ·ï¿½Æ£ï¿½WHEELTEC
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½wheeltec.net
+ï¿½Ô±ï¿½ï¿½ï¿½ï¿½Ì£ï¿½shop114407458.taobao.com 
+ï¿½ï¿½ï¿½ï¿½Í¨: https://minibalance.aliexpress.com/store/4455017
+ï¿½æ±¾ï¿½ï¿½V1.0
+ï¿½Þ¸ï¿½Ê±ï¿½ä£º2023-05-25
 
 Brand: WHEELTEC
 Website: wheeltec.net
 Taobao shop: shop114407458.taobao.com 
 Aliexpress: https://minibalance.aliexpress.com/store/4455017
 Version: V1.0
-Update£º2023-05-25
+Updateï¿½ï¿½2023-05-25
 
 All rights reserved
 ***********************************************/
 #include "control.h"
-//¿É¸ù¾ÝÊµ¼Ê½øÐÐÐÞ¸Ä
-#define Frequency	400.0f			//Ã¿1ms¶ÁÈ¡Ò»´Î±àÂëÆ÷µÄÖµ
-#define Perimeter	0.144513f			//ÂÖ×ÓÖÜ³¤(µ¥Î»:m)
-#define MOTOR_GEAR_RATIO       20.0f    // µç»ú¼õËÙ±È
-#define ENCODER_RESOLUTION     13.0f    // ±àÂëÆ÷ÏßÊý
-#define ENCODER_DIVISION_RATIO 4.0f      // ·ÖÆµÖµ
+//ï¿½É¸ï¿½ï¿½ï¿½Êµï¿½Ê½ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½
+#define Frequency	400.0f			//Ã¿1msï¿½ï¿½È¡Ò»ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+#define Perimeter	0.144513f			//ï¿½ï¿½ï¿½ï¿½ï¿½Ü³ï¿½(ï¿½ï¿½Î»:m)
+#define MOTOR_GEAR_RATIO       20.0f    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù±ï¿½
+#define ENCODER_RESOLUTION     13.0f    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+#define ENCODER_DIVISION_RATIO 4.0f      // ï¿½ï¿½ÆµÖµ
 
-float Velocity_KP = 800,Velocity_KI = 700;	//µç»ú×ªËÙ¿ØÖÆPID²ÎÊý
+float Velocity_KP = 800,Velocity_KI = 700;	//ï¿½ï¿½ï¿½×ªï¿½Ù¿ï¿½ï¿½ï¿½PIDï¿½ï¿½ï¿½ï¿½
 
 int Divider_flag=0;
-float Voltage_Count,Voltage_All,Voltage;  	//µçÑ¹²ÉÑùÏà¹Ø±äÁ¿ 
-Encoder OriginalEncoder; 					//±àÂëÆ÷Ô­Ê¼Êý¾Ý   
-Motor_parameter MotorA,MotorB;				//×óÓÒµç»úÏà¹Ø±äÁ¿
-float Move_X =0,Move_Z = 0;						//Ä¿±êËÙ¶ÈºÍÄ¿±ê×ªÏòËÙ¶È
+float Voltage_Count,Voltage_All,Voltage;  	//ï¿½ï¿½Ñ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø±ï¿½ï¿½ï¿½ 
+Encoder OriginalEncoder; 					//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô­Ê¼ï¿½ï¿½ï¿½ï¿½   
+Motor_parameter MotorA,MotorB;				//ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½Ø±ï¿½ï¿½ï¿½
+float Move_X =0,Move_Z = 0;						//Ä¿ï¿½ï¿½ï¿½Ù¶Èºï¿½Ä¿ï¿½ï¿½×ªï¿½ï¿½ï¿½Ù¶ï¿½
 
 
-//¶¨Ê±Æ÷6-1ms¶¨Ê±ÖÐ¶Ï´¦Àíº¯Êý
+//ï¿½ï¿½Ê±ï¿½ï¿½6-1msï¿½ï¿½Ê±ï¿½Ð¶Ï´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void TIM6_IRQHandler(void) {
     if (TIM_GetITStatus(TIM6, TIM_IT_Update) != RESET) {
-        TIM_ClearITPendingBit(TIM6, TIM_IT_Update); // Çå³ýÖÐ¶Ï±êÖ¾Î»
+        TIM_ClearITPendingBit(TIM6, TIM_IT_Update); // ï¿½ï¿½ï¿½ï¿½Ð¶Ï±ï¿½Ö¾Î»
 		Divider_flag++;
 		if(Divider_flag%2==0)
 		{
 			Divider_flag=0;
 			Led_Flash(100);
 			Key();
-			Voltage_All+=Get_battery_volt();  //¶à´Î²ÉÑùÀÛ»ý
+			Voltage_All+=Get_battery_volt();  //ï¿½ï¿½Î²ï¿½ï¿½ï¿½ï¿½Û»ï¿½
 		    if(++Voltage_Count==100) Voltage=Voltage_All/100,Voltage_All=0,Voltage_Count=0;//
 		}
-		Get_Velocity_From_Encoder();		//»ñÈ¡µç»úµ±Ç°×ªËÙ
-		IRDM_line_inspection();				//ºìÍâÑ²Ïß--¼ÆËãµ±Ç°Ä¿±êËÙ¶È
-		if(Turn_Off())										//¼ì²éµç»úÊÇ·ñ¹Ø±Õ£¬µçÑ¹ÊÇ·ñ²»×ã
+		Get_Velocity_From_Encoder();		//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ç°×ªï¿½ï¿½
+		IRDM_line_inspection();				//ï¿½ï¿½ï¿½ï¿½Ñ²ï¿½ï¿½--ï¿½ï¿½ï¿½ãµ±Ç°Ä¿ï¿½ï¿½ï¿½Ù¶ï¿½
+		if(Turn_Off())										//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½Ø±Õ£ï¿½ï¿½ï¿½Ñ¹ï¿½Ç·ï¿½ï¿½ï¿½
 		{				
-			Get_Motor_PWM();										//×ª»»³ÉÇý¶¯µç»úµÄpwm
+			Get_Motor_PWM();										//×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½pwm
 		}
 		else
 		{
 			MotorA.Motor_Pwm  = 0,MotorB.Motor_Pwm = 0;
 		}
-		Set_Pwm(-MotorA.Motor_Pwm,MotorB.Motor_Pwm);				//Çý¶¯µç»ú
+		Set_Pwm(-MotorA.Motor_Pwm,MotorB.Motor_Pwm);				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     }
 }
 
 
-//³õÊ¼»¯¶¨Ê±Æ÷6£¬Éú³É1ms¶¨Ê±ÖÐ¶Ï
+//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½6ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1msï¿½ï¿½Ê±ï¿½Ð¶ï¿½
 void TIM6_Init(void) {
     TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
     NVIC_InitTypeDef NVIC_InitStructure;
-    // Ê¹ÄÜ¶¨Ê±Æ÷ 6 Ê±ÖÓ
+    // Ê¹ï¿½Ü¶ï¿½Ê±ï¿½ï¿½ 6 Ê±ï¿½ï¿½
     RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM6, ENABLE);
-    // ÅäÖÃ¶¨Ê±Æ÷»ù±¾²ÎÊý
-    TIM_TimeBaseStructure.TIM_Period = 24; // ×Ô¶¯ÖØ×°ÔØ¼Ä´æÆ÷µÄÖµ
-    TIM_TimeBaseStructure.TIM_Prescaler = 7199; // Ô¤·ÖÆµÆ÷µÄÖµ
+    // ï¿½ï¿½ï¿½Ã¶ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    TIM_TimeBaseStructure.TIM_Period = 24; // ï¿½Ô¶ï¿½ï¿½ï¿½×°ï¿½Ø¼Ä´ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+    TIM_TimeBaseStructure.TIM_Prescaler = 7199; // Ô¤ï¿½ï¿½Æµï¿½ï¿½ï¿½ï¿½Öµ
     TIM_TimeBaseStructure.TIM_ClockDivision = 0;
     TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
     TIM_TimeBaseInit(TIM6, &TIM_TimeBaseStructure);
-    // Ê¹ÄÜ¶¨Ê±Æ÷¸üÐÂÖÐ¶Ï
+    // Ê¹ï¿½Ü¶ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½
     TIM_ITConfig(TIM6, TIM_IT_Update, ENABLE);
-    // ÅäÖÃ NVIC ÒÔ´¦Àí TIM6 ÖÐ¶Ï
-    NVIC_InitStructure.NVIC_IRQChannel = TIM6_IRQn;
-    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1; // ÉèÖÃÇÀÕ¼ÓÅÏÈ¼¶Îª 1
-    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1; // ÉèÖÃ×ÓÓÅÏÈ¼¶Îª 1
+    // ï¿½ï¿½ï¿½ï¿½ NVIC ï¿½Ô´ï¿½ï¿½ï¿½ TIM6 ï¿½Ð¶ï¿½
+#if defined (TIM6_IRQn)
+	NVIC_InitStructure.NVIC_IRQChannel = TIM6_IRQn;
+#elif defined (TIM6_DAC_IRQn)
+	NVIC_InitStructure.NVIC_IRQChannel = TIM6_DAC_IRQn;
+#else
+	/* Fallback to IRQ number 54 if specific symbol not available */
+	NVIC_InitStructure.NVIC_IRQChannel = (u8)54;
+#endif
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¼ï¿½ï¿½ï¿½È¼ï¿½Îª 1
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¼ï¿½Îª 1
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
     NVIC_Init(&NVIC_InitStructure);
-    // Æô¶¯¶¨Ê±Æ÷
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
     TIM_Cmd(TIM6, ENABLE);
 }
 /**************************************************************************
 Function: Get_Velocity_From_Encoder
 Input   : none
 Output  : none
-º¯Êý¹¦ÄÜ£º¶ÁÈ¡±àÂëÆ÷ºÍ×ª»»³ÉËÙ¶È
-Èë¿Ú²ÎÊý: ÎÞ 
-·µ»Ø  Öµ£ºÎÞ
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½
+ï¿½ï¿½Ú²ï¿½ï¿½ï¿½: ï¿½ï¿½ 
+ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½ï¿½ï¿½
 **************************************************************************/	 	
 void Get_Velocity_From_Encoder(void)
 {
 	
 	 //Retrieves the original data of the encoder
-	  //»ñÈ¡±àÂëÆ÷µÄÔ­Ê¼Êý¾Ý
+	  //ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô­Ê¼ï¿½ï¿½ï¿½ï¿½
 		float Encoder_A_pr,Encoder_B_pr; 
 		OriginalEncoder.A=Read_Encoder(Encoder1);	
 		OriginalEncoder.B=Read_Encoder(Encoder2);	
 		Encoder_A_pr=OriginalEncoder.A; Encoder_B_pr=-OriginalEncoder.B;
-		//±àÂëÆ÷Ô­Ê¼Êý¾Ý×ª»»Îª³µÂÖËÙ¶È£¬µ¥Î»m/s
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô­Ê¼ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½Ù¶È£ï¿½ï¿½ï¿½Î»m/s
 		MotorA.Current_Encoder= Encoder_A_pr*Frequency*Perimeter/(ENCODER_DIVISION_RATIO*ENCODER_RESOLUTION*MOTOR_GEAR_RATIO);  
 		MotorB.Current_Encoder= Encoder_B_pr*Frequency*Perimeter/(ENCODER_DIVISION_RATIO*ENCODER_RESOLUTION*MOTOR_GEAR_RATIO); 
 }
@@ -110,9 +117,9 @@ void Get_Velocity_From_Encoder(void)
 Function: Limiting function
 Input   : Value
 Output  : none
-º¯Êý¹¦ÄÜ£ºÏÞ·ùº¯Êý
-Èë¿Ú²ÎÊý£º·ùÖµ
-·µ»Ø  Öµ£ºÎÞ
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½Þ·ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½ï¿½ï¿½
 **************************************************************************/
 float target_limit_float(float insert,float low,float high)
 {
@@ -133,46 +140,46 @@ int target_limit_int(int insert,int low,int high)
         return insert;	
 }
 /**************************************************************************
-º¯Êý¹¦ÄÜ£ºÔöÁ¿PI¿ØÖÆÆ÷
-Èë¿Ú²ÎÊý£º±àÂëÆ÷²âÁ¿Öµ£¬Ä¿±êËÙ¶È
-·µ»Ø  Öµ£ºµç»úPWM
-¸ù¾ÝÔöÁ¿Ê½ÀëÉ¢PID¹«Ê½ 
-pwm+=Kp[e£¨k£©-e(k-1)]+Ki*e(k)+Kd[e(k)-2e(k-1)+e(k-2)]
-e(k)´ú±í±¾´ÎÆ«²î 
-e(k-1)´ú±íÉÏÒ»´ÎµÄÆ«²î  ÒÔ´ËÀàÍÆ 
-pwm´ú±íÔöÁ¿Êä³ö
-ÔÚÎÒÃÇµÄËÙ¶È¿ØÖÆ±Õ»·ÏµÍ³ÀïÃæ£¬Ö»Ê¹ÓÃPI¿ØÖÆ
-pwm+=Kp[e£¨k£©-e(k-1)]+Ki*e(k)
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½PIï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Ä¿ï¿½ï¿½ï¿½Ù¶ï¿½
+ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½ï¿½ï¿½ï¿½PWM
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½É¢PIDï¿½ï¿½Ê½ 
+pwm+=Kp[eï¿½ï¿½kï¿½ï¿½-e(k-1)]+Ki*e(k)+Kd[e(k)-2e(k-1)+e(k-2)]
+e(k)ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ«ï¿½ï¿½ 
+e(k-1)ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Îµï¿½Æ«ï¿½ï¿½  ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½ 
+pwmï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½ï¿½Çµï¿½ï¿½Ù¶È¿ï¿½ï¿½Æ±Õ»ï¿½ÏµÍ³ï¿½ï¿½ï¿½æ£¬Ö»Ê¹ï¿½ï¿½PIï¿½ï¿½ï¿½ï¿½
+pwm+=Kp[eï¿½ï¿½kï¿½ï¿½-e(k-1)]+Ki*e(k)
 **************************************************************************/
 int Incremental_PI_Left (float Encoder,float Target)
 { 	
 	 static float Bias,Pwm,Last_bias;
-	 Bias=Target-Encoder;                					//¼ÆËãÆ«²î
-	 Pwm+=Velocity_KP*(Bias-Last_bias)+Velocity_KI*Bias;   	//ÔöÁ¿Ê½PI¿ØÖÆÆ÷
+	 Bias=Target-Encoder;                					//ï¿½ï¿½ï¿½ï¿½Æ«ï¿½ï¿½
+	 Pwm+=Velocity_KP*(Bias-Last_bias)+Velocity_KI*Bias;   	//ï¿½ï¿½ï¿½ï¿½Ê½PIï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 if(Pwm>7200)Pwm=7200;
 	 if(Pwm<-7200)Pwm=-7200;
-	 Last_bias=Bias;	                   					//±£´æÉÏÒ»´ÎÆ«²î 
-	 return Pwm;                         					//ÔöÁ¿Êä³ö
+	 Last_bias=Bias;	                   					//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Æ«ï¿½ï¿½ 
+	 return Pwm;                         					//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 }
 
 
 int Incremental_PI_Right (float Encoder,float Target)
 { 	
 	 static float Bias,Pwm,Last_bias;
-	 Bias=Target-Encoder;                					//¼ÆËãÆ«²î
-	 Pwm+=Velocity_KP*(Bias-Last_bias)+Velocity_KI*Bias;   	//ÔöÁ¿Ê½PI¿ØÖÆÆ÷
+	 Bias=Target-Encoder;                					//ï¿½ï¿½ï¿½ï¿½Æ«ï¿½ï¿½
+	 Pwm+=Velocity_KP*(Bias-Last_bias)+Velocity_KI*Bias;   	//ï¿½ï¿½ï¿½ï¿½Ê½PIï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 if(Pwm>7200)Pwm=7200;
 	 if(Pwm<-7200)Pwm=-7200;
-	 Last_bias=Bias;	                   					//±£´æÉÏÒ»´ÎÆ«²î 
-	 return Pwm;                         					//ÔöÁ¿Êä³ö
+	 Last_bias=Bias;	                   					//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Æ«ï¿½ï¿½ 
+	 return Pwm;                         					//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 }
 /**************************************************************************
 Function: PWM_Limit
 Input   : IN;max;min
 Output  : OUT
-º¯Êý¹¦ÄÜ£ºÏÞÖÆPWM¸³Öµ
-Èë¿Ú²ÎÊý: IN£ºÊäÈë²ÎÊý  max£ºÏÞ·ù×î´óÖµ  min£ºÏÞ·ù×îÐ¡Öµ 
-·µ»Ø  Öµ£ºÏÞ·ùºóµÄÖµ
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½PWMï¿½ï¿½Öµ
+ï¿½ï¿½Ú²ï¿½ï¿½ï¿½: INï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  maxï¿½ï¿½ï¿½Þ·ï¿½ï¿½ï¿½ï¿½Öµ  minï¿½ï¿½ï¿½Þ·ï¿½ï¿½ï¿½Ð¡Öµ 
+ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½ï¿½Þ·ï¿½ï¿½ï¿½ï¿½Öµ
 **************************************************************************/	 	
 float PWM_Limit(float IN,float max,float min)
 {
@@ -185,16 +192,16 @@ float PWM_Limit(float IN,float max,float min)
 Function: Get_Motor_PWM
 Input   : none
 Output  : none
-º¯Êý¹¦ÄÜ£º×ª»»³ÉÇý¶¯µç»úµÄPWM
-Èë¿Ú²ÎÊý: ÎÞ 
-·µ»Ø  Öµ£ºÎÞ
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½PWM
+ï¿½ï¿½Ú²ï¿½ï¿½ï¿½: ï¿½ï¿½ 
+ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½ï¿½ï¿½
 **************************************************************************/	 	
 void Get_Motor_PWM(void)
 {
-	//¼ÆËã×óÓÒµç»ú¶ÔÓ¦µÄPWM
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½PWM
 	MotorA.Motor_Pwm = Incremental_PI_Left(MotorA.Current_Encoder,MotorA.Target_Encoder);	
 	MotorB.Motor_Pwm = Incremental_PI_Right(MotorB.Current_Encoder,MotorB.Target_Encoder);
-	//ÏÞ·ù
+	//ï¿½Þ·ï¿½
 	MotorA.Motor_Pwm  = PWM_Limit(MotorA.Motor_Pwm,7000,-7000);
 	MotorB.Motor_Pwm  = PWM_Limit(MotorB.Motor_Pwm,7000,-7000);
 }
@@ -212,14 +219,14 @@ void Set_Pwm(int motor_a,int motor_b)
 Function: Check whether it is abnormal
 Input   : none
 Output  : 1:Abnormal;0:Normal
-º¯Êý¹¦ÄÜ£ºÒì³£¹Ø±Õµç»ú
-Èë¿Ú²ÎÊý: ÎÞ 
-·µ»Ø  Öµ£º1£ºÒì³£  0£ºÕý³£
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ì³£ï¿½Ø±Õµï¿½ï¿½
+ï¿½ï¿½Ú²ï¿½ï¿½ï¿½: ï¿½ï¿½ 
+ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½1ï¿½ï¿½ï¿½ì³£  0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 **************************************************************************/	 	
 u8 Turn_Off(void)
 {
 	u8 temp = 0;
-	if(Voltage>700&&EN==0)//µçÑ¹¸ßÓÚ7VÇÒÊ¹ÄÜ¿ª¹Ø´ò¿ª
+	if(Voltage>700&&EN==0)//ï¿½ï¿½Ñ¹ï¿½ï¿½ï¿½ï¿½7Vï¿½ï¿½Ê¹ï¿½Ü¿ï¿½ï¿½Ø´ï¿½
 	{
 		temp = 1;
 	}

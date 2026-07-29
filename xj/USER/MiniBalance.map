@@ -1441,9 +1441,9 @@ Memory Map of the image
 
   Image Entry point : 0x08000131
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x0000730c, Max: 0x00040000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x0000730c, Max: 0x00010000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00007224, Max: 0x00040000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00007224, Max: 0x00010000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -1609,7 +1609,7 @@ Memory Map of the image
     0x08007204   0x08007204   0x00000020   Data   RO         1089    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08007224, Size: 0x00000ba0, Max: 0x0000c000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08007224, Size: 0x00000ba0, Max: 0x00005000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -1643,6 +1643,7 @@ Image component sizes
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
        380         30          0          0          0       1501   adc.o
+<<<<<<< HEAD
        124         10          0          4          0        732   beep.o
       1072        110          0         64         32       4105   control.o
          0          0          0          0          0         32   core_cm3.o
@@ -1652,6 +1653,17 @@ Image component sizes
        100         16          0          4          0        689   led.o
         98          0          0          0          0       1395   minibalance.o
        220         22          0          0          0     215457   misc.o
+=======
+       124         10          0          4          0        728   beep.o
+      1072        110          0         64         32       4109   control.o
+         0          0          0          0          0         32   core_cm3.o
+       212         18          0          4          0        963   delay.o
+       472         22          0          0          0       1735   encoder.o
+       428         50          0         16          0       1513   key.o
+       100         16          0          4          0        685   led.o
+        98          0          0          0          0       1371   minibalance.o
+       220         22          0          0          0     214037   misc.o
+>>>>>>> fedf9e1014aa23a66a408cd06200c94127fda3d3
        388         14          0          0          0       1191   motor.o
       1196         40       2660          0       1024       4846   oled.o
       1608        282          0          1          0       1169   show.o
@@ -1664,12 +1676,21 @@ Image component sizes
       1032         22          0          0          0       8384   stm32f10x_usart.o
        712         44          0          0          0       2763   sys.o
        480         38          0         20          0       1623   system_stm32f10x.o
+<<<<<<< HEAD
        756        110          0         52          0       2489   trackmodule.o
        184         14          0          4          0       2886   usart.o
        876        112         89         40         50       2056   usart3.o
 
     ----------------------------------------------------------------------
      16940       1168       3094        232       2644     353557   Object Totals
+=======
+       756        110          0         52          0       2485   trackmodule.o
+       184         14          0          4          0       2854   usart.o
+       876        112         89         40         50       2048   usart3.o
+
+    ----------------------------------------------------------------------
+     16940       1168       3094        232       2644     351977   Object Totals
+>>>>>>> fedf9e1014aa23a66a408cd06200c94127fda3d3
          0          0         32          0          0          0   (incl. Generated)
          8          0          9          3          2          0   (incl. Padding)
 
@@ -1770,8 +1791,13 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
+<<<<<<< HEAD
      25982       1774       3238        232       2744     353969   Grand Totals
      25982       1774       3238        232       2744     353969   ELF Image Totals
+=======
+     25982       1774       3238        232       2744     352389   Grand Totals
+     25982       1774       3238        232       2744     352389   ELF Image Totals
+>>>>>>> fedf9e1014aa23a66a408cd06200c94127fda3d3
      25982       1774       3238        232          0          0   ROM Totals
 
 ==============================================================================

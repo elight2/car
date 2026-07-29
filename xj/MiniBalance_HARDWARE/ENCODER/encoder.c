@@ -1,18 +1,18 @@
 /***********************************************
-¹«Ë¾£ºÂÖÈ¤¿Æ¼¼(¶«Ý¸)ÓÐÏÞ¹«Ë¾
-Æ·ÅÆ£ºWHEELTEC
-¹ÙÍø£ºwheeltec.net
-ÌÔ±¦µêÆÌ£ºshop114407458.taobao.com 
-ËÙÂôÍ¨: https://minibalance.aliexpress.com/store/4455017
-°æ±¾£ºV1.0
-ÐÞ¸ÄÊ±¼ä£º2022-09-05
+ï¿½ï¿½Ë¾ï¿½ï¿½ï¿½ï¿½È¤ï¿½Æ¼ï¿½(ï¿½ï¿½Ý¸)ï¿½ï¿½ï¿½Þ¹ï¿½Ë¾
+Æ·ï¿½Æ£ï¿½WHEELTEC
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½wheeltec.net
+ï¿½Ô±ï¿½ï¿½ï¿½ï¿½Ì£ï¿½shop114407458.taobao.com 
+ï¿½ï¿½ï¿½ï¿½Í¨: https://minibalance.aliexpress.com/store/4455017
+ï¿½æ±¾ï¿½ï¿½V1.0
+ï¿½Þ¸ï¿½Ê±ï¿½ä£º2022-09-05
 
 Brand: WHEELTEC
 Website: wheeltec.net
 Taobao shop: shop114407458.taobao.com 
 Aliexpress: https://minibalance.aliexpress.com/store/4455017
 Version: V1.0
-Update£º2022-09-05
+Updateï¿½ï¿½2022-09-05
 
 All rights reserved
 ***********************************************/
@@ -23,25 +23,25 @@ All rights reserved
 Function: Encoder_GPIO_Config
 Input   : none
 Output  : none
-º¯Êý¹¦ÄÜ£º±àÂëÆ÷¶Ë¿ÚÅäÖÃ
-Èë¿Ú²ÎÊý: ÎÞ 
-·µ»Ø  Öµ£ºÎÞ
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë¿ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½Ú²ï¿½ï¿½ï¿½: ï¿½ï¿½ 
+ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½ï¿½ï¿½
 **************************************************************************/	 	
 void Encoder_GPIO_Config(void)
 {
 	
 	GPIO_InitTypeDef GPIO_InitStructure;
 	
-	//¿ªÆô±àÂëÆ÷µÄGPIOµÄ¶Ë¿ÚÊ±ÖÓ
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½GPIOï¿½Ä¶Ë¿ï¿½Ê±ï¿½ï¿½
 	RCC_APB2PeriphClockCmd( ENCODER1_GPIO_CLK|ENCODER2_GPIO_CLK, ENABLE); 
 
-	GPIO_InitStructure.GPIO_Pin = ENCODER1_A_GPIO_PIN|ENCODER1_B_GPIO_PIN;	//¶Ë¿ÚÅäÖÃ
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING; 					//¸¡¿ÕÊäÈë
-	GPIO_Init(ENCODER1_GPIO_PORT, &GPIO_InitStructure); 					//¸ù¾ÝÉè¶¨²ÎÊý³õÊ¼»¯
+	GPIO_InitStructure.GPIO_Pin = ENCODER1_A_GPIO_PIN|ENCODER1_B_GPIO_PIN;	//ï¿½Ë¿ï¿½ï¿½ï¿½ï¿½ï¿½
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING; 					//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	GPIO_Init(ENCODER1_GPIO_PORT, &GPIO_InitStructure); 					//ï¿½ï¿½ï¿½ï¿½ï¿½è¶¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½
 
-	GPIO_InitStructure.GPIO_Pin = ENCODER2_A_GPIO_PIN|ENCODER2_B_GPIO_PIN;	//¶Ë¿ÚÅäÖÃ
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING; 					//¸¡¿ÕÊäÈë
-	GPIO_Init(ENCODER2_GPIO_PORT, &GPIO_InitStructure); 					//¸ù¾ÝÉè¶¨²ÎÊý³õÊ¼»¯
+	GPIO_InitStructure.GPIO_Pin = ENCODER2_A_GPIO_PIN|ENCODER2_B_GPIO_PIN;	//ï¿½Ë¿ï¿½ï¿½ï¿½ï¿½ï¿½
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING; 					//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	GPIO_Init(ENCODER2_GPIO_PORT, &GPIO_InitStructure); 					//ï¿½ï¿½ï¿½ï¿½ï¿½è¶¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½
 
 }
 
@@ -49,24 +49,30 @@ void Encoder_GPIO_Config(void)
 Function: Encoder_NVIC_Config
 Input   : none
 Output  : none
-º¯Êý¹¦ÄÜ£º±àÂëÆ÷ÖÐ¶ÏÅäÖÃ
-Èë¿Ú²ÎÊý: ÎÞ 
-·µ»Ø  Öµ£ºÎÞ
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½Ú²ï¿½ï¿½ï¿½: ï¿½ï¿½ 
+ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½ï¿½ï¿½
 **************************************************************************/	 	
 void Encoder_NVIC_Config(void)
 {
 	NVIC_InitTypeDef NVIC_InitStruct;
 
-	NVIC_InitStruct.NVIC_IRQChannel = ENCODER1_IRQ;  		//¶¨Ê±Æ÷4ÖÐ¶Ï
-	NVIC_InitStruct.NVIC_IRQChannelCmd = ENABLE;  			//Ê¹ÄÜIRQÍ¨µÀ
-	NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = 1;	//ÇÀÕ¼ÓÅÏÈ¼¶1 
-	NVIC_InitStruct.NVIC_IRQChannelSubPriority = 3;       	//ÏìÓ¦ÓÅÏÈ¼¶3
+	NVIC_InitStruct.NVIC_IRQChannel = ENCODER1_IRQ;  		//ï¿½ï¿½Ê±ï¿½ï¿½4ï¿½Ð¶ï¿½
+	NVIC_InitStruct.NVIC_IRQChannelCmd = ENABLE;  			//Ê¹ï¿½ï¿½IRQÍ¨ï¿½ï¿½
+	NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = 1;	//ï¿½ï¿½Õ¼ï¿½ï¿½ï¿½È¼ï¿½1 
+	NVIC_InitStruct.NVIC_IRQChannelSubPriority = 3;       	//ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½È¼ï¿½3
 	NVIC_Init(&NVIC_InitStruct);
 
-	NVIC_InitStruct.NVIC_IRQChannel = ENCODER2_IRQ;  		//¶¨Ê±Æ÷8ÖÐ¶Ï
-	NVIC_InitStruct.NVIC_IRQChannelCmd = ENABLE;  			//Ê¹ÄÜIRQÍ¨µÀ
-	NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = 1;	//ÇÀÕ¼ÓÅÏÈ¼¶1 
-	NVIC_InitStruct.NVIC_IRQChannelSubPriority = 3;       	//ÏìÓ¦ÓÅÏÈ¼¶3
+	#if defined (TIM8_UP_IRQn)
+    NVIC_InitStruct.NVIC_IRQChannel = TIM8_UP_IRQn;   	// TIM8 update IRQ
+	#elif defined (TIM8_IRQn)
+    NVIC_InitStruct.NVIC_IRQChannel = TIM8_IRQn;   	// TIM8 IRQ
+	#else
+    NVIC_InitStruct.NVIC_IRQChannel = (u8)44;   	// fallback numeric IRQ for TIM8 update
+	#endif
+	NVIC_InitStruct.NVIC_IRQChannelCmd = ENABLE;  			//Ê¹ï¿½ï¿½IRQÍ¨ï¿½ï¿½
+	NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = 1;	//ï¿½ï¿½Õ¼ï¿½ï¿½ï¿½È¼ï¿½1 
+	NVIC_InitStruct.NVIC_IRQChannelSubPriority = 3;       	//ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½È¼ï¿½3
 	NVIC_Init(&NVIC_InitStruct);
 	
 }
@@ -74,53 +80,53 @@ void Encoder_NVIC_Config(void)
 Function: Encoder_TIM_Mode_Config
 Input   : none
 Output  : none
-º¯Êý¹¦ÄÜ£º±àÂëÆ÷Ä£Ê½ÅäÖÃ
-Èë¿Ú²ÎÊý: ÎÞ 
-·µ»Ø  Öµ£ºÎÞ
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£Ê½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½Ú²ï¿½ï¿½ï¿½: ï¿½ï¿½ 
+ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½ï¿½ï¿½
 **************************************************************************/	 	
 void Encoder_TIM_Mode_Config(void)
 {
 	TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;  
 	TIM_ICInitTypeDef TIM_ICInitStructure;  
 
-	ENCODER1_TIM_APBxClock_FUN(ENCODER1_TIM_CLK,ENABLE);		//±àÂëÆ÷1Ê±ÖÓ
+	ENCODER1_TIM_APBxClock_FUN(ENCODER1_TIM_CLK,ENABLE);		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1Ê±ï¿½ï¿½
 
-	ENCODER2_TIM_APBxClock_FUN(ENCODER2_TIM_CLK,ENABLE);		//±àÂëÆ÷2Ê±ÖÓ
+	ENCODER2_TIM_APBxClock_FUN(ENCODER2_TIM_CLK,ENABLE);		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½2Ê±ï¿½ï¿½
 
-	/*--------------------Ê±»ù½á¹¹Ìå³õÊ¼»¯-------------------------*/
+	/*--------------------Ê±ï¿½ï¿½ï¿½á¹¹ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½-------------------------*/
 	TIM_TimeBaseStructInit(&TIM_TimeBaseStructure);
-	TIM_TimeBaseStructure.TIM_Prescaler = 0x00; 				// Ô¤·ÖÆµÆ÷ 
-	TIM_TimeBaseStructure.TIM_Period = ENCODER_TIM_PERIOD; 		//Éè¶¨¼ÆÊýÆ÷×Ô¶¯ÖØ×°Öµ
-	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;		//Ñ¡ÔñÊ±ÖÓ·ÖÆµ£º²»·ÖÆµ
-	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;	//±ßÑØ¼ÆÊýÄ£Ê½ 
+	TIM_TimeBaseStructure.TIM_Prescaler = 0x00; 				// Ô¤ï¿½ï¿½Æµï¿½ï¿½ 
+	TIM_TimeBaseStructure.TIM_Period = ENCODER_TIM_PERIOD; 		//ï¿½è¶¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½×°Öµ
+	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;		//Ñ¡ï¿½ï¿½Ê±ï¿½Ó·ï¿½Æµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æµ
+	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;	//ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½Ä£Ê½ 
 	
-	TIM_TimeBaseInit(ENCODER1_TIM, &TIM_TimeBaseStructure);  	//³õÊ¼»¯¶¨Ê±Æ÷
-	TIM_TimeBaseInit(ENCODER2_TIM, &TIM_TimeBaseStructure);  	//³õÊ¼»¯¶¨Ê±Æ÷
+	TIM_TimeBaseInit(ENCODER1_TIM, &TIM_TimeBaseStructure);  	//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	TIM_TimeBaseInit(ENCODER2_TIM, &TIM_TimeBaseStructure);  	//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 
-	/*--------------------±àÂëÆ÷Ä£Ê½½Ó¿ÚÅäÖÃ-------------------------*/
-	//±àÂëÆ÷1
-	TIM_EncoderInterfaceConfig(ENCODER1_TIM, TIM_EncoderMode_TI12, TIM_ICPolarity_Rising, TIM_ICPolarity_Rising);//Ê¹ÓÃ±àÂëÆ÷Ä£Ê½3
+	/*--------------------ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£Ê½ï¿½Ó¿ï¿½ï¿½ï¿½ï¿½ï¿½-------------------------*/
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1
+	TIM_EncoderInterfaceConfig(ENCODER1_TIM, TIM_EncoderMode_TI12, TIM_ICPolarity_Rising, TIM_ICPolarity_Rising);//Ê¹ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½Ä£Ê½3
 
-	TIM_ICStructInit(&TIM_ICInitStructure); 					//°ÑTIM_ICInitStruct ÖÐµÄÃ¿Ò»¸ö²ÎÊý°´È±Ê¡ÖµÌîÈë
-	TIM_ICInitStructure.TIM_ICFilter = 10;  					//ÉèÖÃÂË²¨Æ÷³¤¶È
+	TIM_ICStructInit(&TIM_ICInitStructure); 					//ï¿½ï¿½TIM_ICInitStruct ï¿½Ðµï¿½Ã¿Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È±Ê¡Öµï¿½ï¿½ï¿½ï¿½
+	TIM_ICInitStructure.TIM_ICFilter = 10;  					//ï¿½ï¿½ï¿½ï¿½ï¿½Ë²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	
-	TIM_ICInit(ENCODER1_TIM, &TIM_ICInitStructure);				//¸ù¾Ý TIM_ICInitStruct µÄ²ÎÊý³õÊ¼»¯ÍâÉè	TIMx
-	TIM_ClearFlag(ENCODER1_TIM, TIM_FLAG_Update);				//Çå³ýTIMµÄ¸üÐÂ±êÖ¾Î»
-	TIM_ITConfig(ENCODER1_TIM, TIM_IT_Update, ENABLE);			//Ê¹ÄÜ¶¨Ê±Æ÷ÖÐ¶Ï
-	TIM_Cmd(ENCODER1_TIM, ENABLE); 								//Ê¹ÄÜ¶¨Ê±Æ÷
+	TIM_ICInit(ENCODER1_TIM, &TIM_ICInitStructure);				//ï¿½ï¿½ï¿½ï¿½ TIM_ICInitStruct ï¿½Ä²ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½	TIMx
+	TIM_ClearFlag(ENCODER1_TIM, TIM_FLAG_Update);				//ï¿½ï¿½ï¿½TIMï¿½Ä¸ï¿½ï¿½Â±ï¿½Ö¾Î»
+	TIM_ITConfig(ENCODER1_TIM, TIM_IT_Update, ENABLE);			//Ê¹ï¿½Ü¶ï¿½Ê±ï¿½ï¿½ï¿½Ð¶ï¿½
+	TIM_Cmd(ENCODER1_TIM, ENABLE); 								//Ê¹ï¿½Ü¶ï¿½Ê±ï¿½ï¿½
 
 
 
-	//±àÂëÆ÷2
-	TIM_EncoderInterfaceConfig(ENCODER2_TIM, TIM_EncoderMode_TI12, TIM_ICPolarity_Rising, TIM_ICPolarity_Rising);//Ê¹ÓÃ±àÂëÆ÷Ä£Ê½3
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½2
+	TIM_EncoderInterfaceConfig(ENCODER2_TIM, TIM_EncoderMode_TI12, TIM_ICPolarity_Rising, TIM_ICPolarity_Rising);//Ê¹ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½Ä£Ê½3
 
-	TIM_ICStructInit(&TIM_ICInitStructure); 					//°ÑTIM_ICInitStruct ÖÐµÄÃ¿Ò»¸ö²ÎÊý°´È±Ê¡ÖµÌîÈë
-	TIM_ICInitStructure.TIM_ICFilter = 10;  					//ÉèÖÃÂË²¨Æ÷³¤¶È
+	TIM_ICStructInit(&TIM_ICInitStructure); 					//ï¿½ï¿½TIM_ICInitStruct ï¿½Ðµï¿½Ã¿Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È±Ê¡Öµï¿½ï¿½ï¿½ï¿½
+	TIM_ICInitStructure.TIM_ICFilter = 10;  					//ï¿½ï¿½ï¿½ï¿½ï¿½Ë²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	
-	TIM_ICInit(ENCODER2_TIM, &TIM_ICInitStructure);				//¸ù¾Ý TIM_ICInitStruct µÄ²ÎÊý³õÊ¼»¯ÍâÉè	TIMx
-	TIM_ClearFlag(ENCODER2_TIM, TIM_FLAG_Update);				//Çå³ýTIMµÄ¸üÐÂ±êÖ¾Î»
-	TIM_ITConfig(ENCODER2_TIM, TIM_IT_Update, ENABLE);			//Ê¹ÄÜ¶¨Ê±Æ÷ÖÐ¶Ï
-	TIM_Cmd(ENCODER2_TIM, ENABLE); 								//Ê¹ÄÜ¶¨Ê±Æ÷
+	TIM_ICInit(ENCODER2_TIM, &TIM_ICInitStructure);				//ï¿½ï¿½ï¿½ï¿½ TIM_ICInitStruct ï¿½Ä²ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½	TIMx
+	TIM_ClearFlag(ENCODER2_TIM, TIM_FLAG_Update);				//ï¿½ï¿½ï¿½TIMï¿½Ä¸ï¿½ï¿½Â±ï¿½Ö¾Î»
+	TIM_ITConfig(ENCODER2_TIM, TIM_IT_Update, ENABLE);			//Ê¹ï¿½Ü¶ï¿½Ê±ï¿½ï¿½ï¿½Ð¶ï¿½
+	TIM_Cmd(ENCODER2_TIM, ENABLE); 								//Ê¹ï¿½Ü¶ï¿½Ê±ï¿½ï¿½
 
 }
 
@@ -128,24 +134,24 @@ void Encoder_TIM_Mode_Config(void)
 Function: Encoder_Init
 Input   : none
 Output  : none
-º¯Êý¹¦ÄÜ£º±àÂëÆ÷ÅäÖÃ
-Èë¿Ú²ÎÊý: ÎÞ 
-·µ»Ø  Öµ£ºÎÞ
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½Ú²ï¿½ï¿½ï¿½: ï¿½ï¿½ 
+ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½ï¿½ï¿½
 **************************************************************************/	 	
 void Encoder_Init(void)
 {
-	Encoder_GPIO_Config();			//¶Ë¿ÚÅäÖÃ
-	Encoder_NVIC_Config();			//ÖÐ¶ÏÅäÖÃ
-	Encoder_TIM_Mode_Config();		//Ä£Ê½ÅäÖÃ
+	Encoder_GPIO_Config();			//ï¿½Ë¿ï¿½ï¿½ï¿½ï¿½ï¿½
+	Encoder_NVIC_Config();			//ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½
+	Encoder_TIM_Mode_Config();		//Ä£Ê½ï¿½ï¿½ï¿½ï¿½
 }
 
 /**************************************************************************
 Function: Read_Encoder
 Input   : TIMX:Timer Number
 Output  : Encoder data
-º¯Êý¹¦ÄÜ£º¶ÁÈ¡±àÂëÆ÷
-Èë¿Ú²ÎÊý: TIMX: ±àÂëÆ÷ÐòºÅ
-·µ»Ø  Öµ£º±àÂëÆ÷¶ÁÊý
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½Ú²ï¿½ï¿½ï¿½: TIMX: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 **************************************************************************/	 	
 int Read_Encoder(u8 TIMX)
 {
@@ -162,29 +168,29 @@ int Read_Encoder(u8 TIMX)
 }
 
 /**************************************************************************
-º¯Êý¹¦ÄÜ£º±àÂëÆ÷1ÖÐ¶Ï·þÎñº¯Êý
-Èë¿Ú²ÎÊý£ºÎÞ
-·µ»Ø  Öµ£ºÎÞ
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1ï¿½Ð¶Ï·ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½ï¿½ï¿½
 **************************************************************************/
-void ENCODER1_IRQHandler(void)//ÖÐ¶Ï´¦Àíº¯ÊýÎª¿Õ£¬Çå³ýÖÐ¶Ï±êÖ¾Î»ºó½áÊøÖÐ¶Ï
+void ENCODER1_IRQHandler(void)//ï¿½Ð¶Ï´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½Õ£ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶Ï±ï¿½Ö¾Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½
 { 		    		  			    
-	if(TIM_GetFlagStatus(ENCODER1_TIM,TIM_FLAG_Update)==SET)//Òç³öÖÐ¶Ï
+	if(TIM_GetFlagStatus(ENCODER1_TIM,TIM_FLAG_Update)==SET)//ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½
 	{
 	 
 	} 
-	TIM_ClearITPendingBit(ENCODER1_TIM,TIM_IT_Update); 	//Çå³ýÖÐ¶Ï±êÖ¾Î» 	
+	TIM_ClearITPendingBit(ENCODER1_TIM,TIM_IT_Update); 	//ï¿½ï¿½ï¿½ï¿½Ð¶Ï±ï¿½Ö¾Î» 	
 }
 /**************************************************************************
-º¯Êý¹¦ÄÜ£º±àÂëÆ÷2ÖÐ¶Ï·þÎñº¯Êý
-Èë¿Ú²ÎÊý£ºÎÞ
-·µ»Ø  Öµ£ºÎÞ
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½2ï¿½Ð¶Ï·ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½ï¿½ï¿½
 **************************************************************************/
-void ENCODER2_IRQHandler(void)//ÖÐ¶Ï´¦Àíº¯ÊýÎª¿Õ£¬Çå³ýÖÐ¶Ï±êÖ¾Î»ºó½áÊøÖÐ¶Ï
+void ENCODER2_IRQHandler(void)//ï¿½Ð¶Ï´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½Õ£ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶Ï±ï¿½Ö¾Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½
 { 		    		  			    
-	if(TIM_GetFlagStatus(ENCODER2_TIM,TIM_FLAG_Update)==SET)//Òç³öÖÐ¶Ï
+	if(TIM_GetFlagStatus(ENCODER2_TIM,TIM_FLAG_Update)==SET)//ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½
 	{
 	 
 	} 
-	TIM_ClearITPendingBit(ENCODER2_TIM,TIM_IT_Update); 	//Çå³ýÖÐ¶Ï±êÖ¾Î» 	  
+	TIM_ClearITPendingBit(ENCODER2_TIM,TIM_IT_Update); 	//ï¿½ï¿½ï¿½ï¿½Ð¶Ï±ï¿½Ö¾Î» 	  
 }
 

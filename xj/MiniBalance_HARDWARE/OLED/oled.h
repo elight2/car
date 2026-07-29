@@ -1,18 +1,18 @@
 /***********************************************
-¹«Ë¾£ºÂÖÈ¤¿Æ¼¼(¶«İ¸)ÓĞÏŞ¹«Ë¾
-Æ·ÅÆ£ºWHEELTEC
-¹ÙÍø£ºwheeltec.net
-ÌÔ±¦µêÆÌ£ºshop114407458.taobao.com 
-ËÙÂôÍ¨: https://minibalance.aliexpress.com/store/4455017
-°æ±¾£ºV1.0
-ĞŞ¸ÄÊ±¼ä£º2022-09-05
+ï¿½ï¿½Ë¾ï¿½ï¿½ï¿½ï¿½È¤ï¿½Æ¼ï¿½(ï¿½ï¿½İ¸)ï¿½ï¿½ï¿½Ş¹ï¿½Ë¾
+Æ·ï¿½Æ£ï¿½WHEELTEC
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½wheeltec.net
+ï¿½Ô±ï¿½ï¿½ï¿½ï¿½Ì£ï¿½shop114407458.taobao.com 
+ï¿½ï¿½ï¿½ï¿½Í¨: https://minibalance.aliexpress.com/store/4455017
+ï¿½æ±¾ï¿½ï¿½V1.0
+ï¿½Ş¸ï¿½Ê±ï¿½ä£º2022-09-05
 
 Brand: WHEELTEC
 Website: wheeltec.net
 Taobao shop: shop114407458.taobao.com 
 Aliexpress: https://minibalance.aliexpress.com/store/4455017
 Version: V1.0
-Update£º2022-09-05
+Updateï¿½ï¿½2022-09-05
 
 All rights reserved
 ***********************************************/
@@ -24,27 +24,27 @@ All rights reserved
 
 
 
-/* ¶¨ÒåOLEDÁ¬½ÓµÄGPIO¶Ë¿Ú, ÓÃ»§Ö»ĞèÒªĞŞ¸ÄÏÂÃæµÄ´úÂë¼´¿É¸Ä±ä¿ØÖÆµÄOLEDÒı½Å */
-#define OLED_SCLK_GPIO_PORT    	GPIOC			              /* GPIO¶Ë¿Ú */
-#define OLED_SCLK_GPIO_CLK 	    RCC_APB2Periph_GPIOC		/* GPIO¶Ë¿ÚÊ±ÖÓ */
-#define OLED_SCLK_GPIO_PIN		GPIO_Pin_14			        /* ÏàÓ¦Òı½ÅºÅ */
+/* 4å¼•è„š OLED å®šä¹‰ï¼šVCC / GND / SDA / SCK */
+#define OLED_SCLK_GPIO_PORT    	GPIOC				      /* GPIOç«¯å£ */
+#define OLED_SCLK_GPIO_CLK 	    RCC_APB2Periph_GPIOC		/* GPIOç«¯å£æ—¶é’Ÿ */
+#define OLED_SCLK_GPIO_PIN		GPIO_Pin_14			        /* SCK */
 
-#define OLED_SDIN_GPIO_PORT    	GPIOB			              /* GPIO¶Ë¿Ú */
-#define OLED_SDIN_GPIO_CLK 	    RCC_APB2Periph_GPIOB		/* GPIO¶Ë¿ÚÊ±ÖÓ */
-#define OLED_SDIN_GPIO_PIN		GPIO_Pin_5			        /* ÏàÓ¦Òı½ÅºÅ */
+#define OLED_SDIN_GPIO_PORT    	GPIOB				      /* GPIOç«¯å£ */
+#define OLED_SDIN_GPIO_CLK 	    RCC_APB2Periph_GPIOB		/* GPIOç«¯å£æ—¶é’Ÿ */
+#define OLED_SDIN_GPIO_PIN		GPIO_Pin_5			        /* SDA */
 
-#define OLED_RST_GPIO_PORT    	GPIOB			              /* GPIO¶Ë¿Ú */
-#define OLED_RST_GPIO_CLK 	    RCC_APB2Periph_GPIOB		/* GPIO¶Ë¿ÚÊ±ÖÓ */
-#define OLED_RST_GPIO_PIN		GPIO_Pin_4			        /* ÏàÓ¦Òı½ÅºÅ */
+#define OLED_RST_GPIO_PORT    	GPIOB				      /* GPIOç«¯å£ */
+#define OLED_RST_GPIO_CLK 	    RCC_APB2Periph_GPIOB		/* GPIOç«¯å£æ—¶é’Ÿ */
+#define OLED_RST_GPIO_PIN		GPIO_Pin_4			        /* ä¿ç•™ï¼Œå½“å‰ 4 å¼•è„š OLED ä¸ä½¿ç”¨ */
 
-#define OLED_RS_GPIO_PORT    	GPIOB			              /* GPIO¶Ë¿Ú */
-#define OLED_RS_GPIO_CLK 	    RCC_APB2Periph_GPIOB		/* GPIO¶Ë¿ÚÊ±ÖÓ */
-#define OLED_RS_GPIO_PIN		GPIO_Pin_3			        /* ÏàÓ¦Òı½ÅºÅ */
-
-
+#define OLED_RS_GPIO_PORT    	GPIOB				      /* GPIOç«¯å£ */
+#define OLED_RS_GPIO_CLK 	    RCC_APB2Periph_GPIOB		/* GPIOç«¯å£æ—¶é’Ÿ */
+#define OLED_RS_GPIO_PIN		GPIO_Pin_3			        /* ä¿ç•™ï¼Œå½“å‰ 4 å¼•è„š OLED ä¸ä½¿ç”¨ */
 
 
-//-----------------OLED¶Ë¿Ú¶¨Òå---------------- 
+
+
+//-----------------OLEDï¿½Ë¿Ú¶ï¿½ï¿½ï¿½---------------- 
 #define OLED_RST_Clr() PBout(4)=0   //RST
 #define OLED_RST_Set() PBout(4)=1   //RST
 
@@ -57,8 +57,8 @@ All rights reserved
 #define OLED_SDIN_Clr()  PBout(5)=0   //SDA
 #define OLED_SDIN_Set()  PBout(5)=1   //SDA
 
-#define OLED_CMD  0	//Ğ´ÃüÁî
-#define OLED_DATA 1	//Ğ´Êı¾İ
+#define OLED_CMD  0	//Ğ´ï¿½ï¿½ï¿½ï¿½
+#define OLED_DATA 1	//Ğ´ï¿½ï¿½ï¿½ï¿½
 
 
 
@@ -66,7 +66,7 @@ All rights reserved
 
 extern u8 OLED_GRAM[128][8];	 
 
-//OLED¿ØÖÆÓÃº¯Êı
+//OLEDï¿½ï¿½ï¿½ï¿½ï¿½Ãºï¿½ï¿½ï¿½
 void OLED_WR_Byte(u8 dat,u8 cmd);	    
 void OLED_Display_On(void);
 void OLED_Display_Off(void);

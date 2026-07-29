@@ -1,18 +1,18 @@
 /***********************************************
-¹«Ë¾£ºÂÖÈ¤¿Æ¼¼£¨¶«Ý¸£©ÓÐÏÞ¹«Ë¾
-Æ·ÅÆ£ºWHEELTEC
-¹ÙÍø£ºwheeltec.net
-ÌÔ±¦µêÆÌ£ºshop114407458.taobao.com 
-ËÙÂôÍ¨: https://minibalance.aliexpress.com/store/4455017
-°æ±¾£ºV1.0
-ÐÞ¸ÄÊ±¼ä£º2023-03-02
+ï¿½ï¿½Ë¾ï¿½ï¿½ï¿½ï¿½È¤ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½ï¿½Ý¸ï¿½ï¿½ï¿½ï¿½ï¿½Þ¹ï¿½Ë¾
+Æ·ï¿½Æ£ï¿½WHEELTEC
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½wheeltec.net
+ï¿½Ô±ï¿½ï¿½ï¿½ï¿½Ì£ï¿½shop114407458.taobao.com 
+ï¿½ï¿½ï¿½ï¿½Í¨: https://minibalance.aliexpress.com/store/4455017
+ï¿½æ±¾ï¿½ï¿½V1.0
+ï¿½Þ¸ï¿½Ê±ï¿½ä£º2023-03-02
 
 Brand: WHEELTEC
 Website: wheeltec.net
 Taobao shop: shop114407458.taobao.com 
 Aliexpress: https://minibalance.aliexpress.com/store/4455017
 Version: V1.0
-Update£º2023-03-02
+Updateï¿½ï¿½2023-03-02
 
 All rights reserved
 ***********************************************/
@@ -24,41 +24,47 @@ All rights reserved
 #include "stm32f10x.h"
 
 
-#define 	ENCODER_TIM_PERIOD 				(u16)(65535)  	 	//²»¿É´óÓÚ65535 ÒòÎªF103µÄ¶¨Ê±Æ÷ÊÇ16Î»µÄ¡£
+#define 	ENCODER_TIM_PERIOD 				(u16)(65535)  	 	//ï¿½ï¿½ï¿½É´ï¿½ï¿½ï¿½65535 ï¿½ï¿½ÎªF103ï¿½Ä¶ï¿½Ê±ï¿½ï¿½ï¿½ï¿½16Î»ï¿½Ä¡ï¿½
 #define	 	Encoder1  						4
 #define 	Encoder2  						8
 
-//±àÂëÆ÷1¶¨Ê±Æ÷
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½Ê±ï¿½ï¿½
 #define  	ENCODER1_TIM                   	TIM4
 #define  	ENCODER1_TIM_APBxClock_FUN    	RCC_APB1PeriphClockCmd
 #define  	ENCODER1_TIM_CLK               	RCC_APB1Periph_TIM4
 
 
-//±àÂëÆ÷1¶Ë¿Ú
-#define 	ENCODER1_GPIO_PORT    			GPIOB			              /* GPIO¶Ë¿Ú */
-#define 	ENCODER1_GPIO_CLK 	   	 		RCC_APB2Periph_GPIOB		/* GPIO¶Ë¿ÚÊ±ÖÓ */
-#define 	ENCODER1_A_GPIO_PIN				GPIO_Pin_7			        /* Á¬½Óµ½AÏàµÄGPIO */
-#define 	ENCODER1_B_GPIO_PIN				GPIO_Pin_6			        /* Á¬½Óµ½BÏàµÄGPIO */
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1ï¿½Ë¿ï¿½
+#define 	ENCODER1_GPIO_PORT    			GPIOB			              /* GPIOï¿½Ë¿ï¿½ */
+#define 	ENCODER1_GPIO_CLK 	   	 		RCC_APB2Periph_GPIOB		/* GPIOï¿½Ë¿ï¿½Ê±ï¿½ï¿½ */
+#define 	ENCODER1_A_GPIO_PIN				GPIO_Pin_7			        /* ï¿½ï¿½ï¿½Óµï¿½Aï¿½ï¿½ï¿½GPIO */
+#define 	ENCODER1_B_GPIO_PIN				GPIO_Pin_6			        /* ï¿½ï¿½ï¿½Óµï¿½Bï¿½ï¿½ï¿½GPIO */
 
-//ÖÐ¶Ï
+//ï¿½Ð¶ï¿½
 #define  	ENCODER1_IRQ                	TIM4_IRQn
 #define  	ENCODER1_IRQHandler         	TIM4_IRQHandler
 
 
-//±àÂëÆ÷2¶¨Ê±Æ÷
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½2ï¿½ï¿½Ê±ï¿½ï¿½
 #define  	ENCODER2_TIM                   	TIM8
 #define  	ENCODER2_TIM_APBxClock_FUN     	RCC_APB2PeriphClockCmd
 #define  	ENCODER2_TIM_CLK               	RCC_APB2Periph_TIM8
 
-//±àÂëÆ÷2¶Ë¿Ú
-#define	 	ENCODER2_GPIO_PORT    			GPIOC			              /* GPIO¶Ë¿Ú */
-#define	 	ENCODER2_GPIO_CLK 	    		RCC_APB2Periph_GPIOC		/* GPIO¶Ë¿ÚÊ±ÖÓ */
-#define	 	ENCODER2_A_GPIO_PIN				GPIO_Pin_7			        /* Á¬½Óµ½AÏàµÄGPIO */
-#define	 	ENCODER2_B_GPIO_PIN				GPIO_Pin_6			        /* Á¬½Óµ½BÏàµÄGPIO */
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½2ï¿½Ë¿ï¿½
+#define	 	ENCODER2_GPIO_PORT    			GPIOC			              /* GPIOï¿½Ë¿ï¿½ */
+#define	 	ENCODER2_GPIO_CLK 	    		RCC_APB2Periph_GPIOC		/* GPIOï¿½Ë¿ï¿½Ê±ï¿½ï¿½ */
+#define	 	ENCODER2_A_GPIO_PIN				GPIO_Pin_7			        /* ï¿½ï¿½ï¿½Óµï¿½Aï¿½ï¿½ï¿½GPIO */
+#define	 	ENCODER2_B_GPIO_PIN				GPIO_Pin_6			        /* ï¿½ï¿½ï¿½Óµï¿½Bï¿½ï¿½ï¿½GPIO */
 
 
-//ÖÐ¶Ï
-#define  	ENCODER2_IRQ                	TIM8_UP_IRQn
+#if defined (TIM8_UP_IRQn)
+#define   ENCODER2_IRQ                TIM8_UP_IRQn
+#elif defined (TIM8_IRQn)
+#define   ENCODER2_IRQ                TIM8_IRQn
+#else
+/* Fallback to IRQ number 44 (TIM8 Update) if symbol missing */
+#define   ENCODER2_IRQ                ((u8)44)
+#endif
 #define  	ENCODER2_IRQHandler         	TIM8_UP_IRQHandler
 
 
