@@ -2,10 +2,10 @@
 #define __TRACKMODULE_H
 #include "sys.h"
 
-#define DH4 PBin(8)
-#define DH3 PCin(9)
-#define DH2 PCin(4)
-#define DH1 PCin(8)
+#define DH4 PBin(13)
+#define DH3 PBin(12)
+#define DH2 PAin(5)
+#define DH1 PAin(4)
 extern float Turn90Angle ;   // ֱ����ת��Ƕ�
 extern float TurnMaxAngle;   // �����ת��Ƕ�
 extern float TurnMidAngle;   // �е�ת��Ƕȣ�����ʱʹ�ã�

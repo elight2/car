@@ -1,18 +1,18 @@
 /***********************************************
-¹«Ë¾£ºÂÖÈ¤¿Æ¼¼(¶«İ¸)ÓĞÏŞ¹«Ë¾
-Æ·ÅÆ£ºWHEELTEC
-¹ÙÍø£ºwheeltec.net
-ÌÔ±¦µêÆÌ£ºshop114407458.taobao.com 
-ËÙÂôÍ¨: https://minibalance.aliexpress.com/store/4455017
-°æ±¾£ºV1.0
-ĞŞ¸ÄÊ±¼ä£º2022-09-05
+ï¿½ï¿½Ë¾ï¿½ï¿½ï¿½ï¿½È¤ï¿½Æ¼ï¿½(ï¿½ï¿½İ¸)ï¿½ï¿½ï¿½Ş¹ï¿½Ë¾
+Æ·ï¿½Æ£ï¿½WHEELTEC
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½wheeltec.net
+ï¿½Ô±ï¿½ï¿½ï¿½ï¿½Ì£ï¿½shop114407458.taobao.com 
+ï¿½ï¿½ï¿½ï¿½Í¨: https://minibalance.aliexpress.com/store/4455017
+ï¿½æ±¾ï¿½ï¿½V1.0
+ï¿½Ş¸ï¿½Ê±ï¿½ä£º2022-09-05
 
 Brand: WHEELTEC
 Website: wheeltec.net
 Taobao shop: shop114407458.taobao.com 
 Aliexpress: https://minibalance.aliexpress.com/store/4455017
 Version: V1.0
-Update£º2022-09-05
+Updateï¿½ï¿½2022-09-05
 
 All rights reserved
 ***********************************************/
@@ -21,27 +21,27 @@ All rights reserved
 Function: Led initialization
 Input   : none
 Output  : none
-º¯Êı¹¦ÄÜ£ºLED½Ó¿Ú³õÊ¼»¯
-Èë¿Ú²ÎÊı£ºÎŞ 
-·µ»Ø  Öµ£ºÎŞ
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½LEDï¿½Ó¿Ú³ï¿½Ê¼ï¿½ï¿½
+ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½ï¿½ï¿½
 **************************************************************************/
 void LED_Init(void)
 {
   GPIO_InitTypeDef GPIO_InitStructure;
-  RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC, ENABLE); //Ê¹ÄÜ¶Ë¿ÚÊ±ÖÓ
-  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2;	            //¶Ë¿ÚÅäÖÃ
-  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;      //ÍÆÍìÊä³ö
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;     //50M
-  GPIO_Init(GPIOC, &GPIO_InitStructure);	//¸ù¾İÉè¶¨²ÎÊı³õÊ¼»¯GPIOA 
+  RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE); //ä½¿èƒ½PAç«¯å£æ—¶é’Ÿ
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8;              //PA8
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;      //æ¨æŒ½è¾“å‡º
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;     //50M
+  GPIO_Init(GPIOA, &GPIO_InitStructure);                //åˆå§‹åŒ–GPIOA
 }
 
 /**************************************************************************
 Function: Led flashing
-Input   : time£ºFlicker frequency
+Input   : timeï¿½ï¿½Flicker frequency
 Output  : none
-º¯Êı¹¦ÄÜ£ºLEDÉÁË¸
-Èë¿Ú²ÎÊı£ºÉÁË¸ÆµÂÊ 
-·µ»Ø  Öµ£ºÎŞ
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½LEDï¿½ï¿½Ë¸
+ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë¸Æµï¿½ï¿½ 
+ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½ï¿½ï¿½
 **************************************************************************/
 void Led_Flash(u16 time)
 {

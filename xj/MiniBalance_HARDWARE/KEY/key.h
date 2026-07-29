@@ -1,18 +1,18 @@
 /***********************************************
-¹«Ë¾£ºÂÖÈ¤¿Æ¼¼(¶«İ¸)ÓĞÏŞ¹«Ë¾
-Æ·ÅÆ£ºWHEELTEC
-¹ÙÍø£ºwheeltec.net
-ÌÔ±¦µêÆÌ£ºshop114407458.taobao.com 
-ËÙÂôÍ¨: https://minibalance.aliexpress.com/store/4455017
-°æ±¾£ºV1.0
-ĞŞ¸ÄÊ±¼ä£º2022-09-05
+ï¿½ï¿½Ë¾ï¿½ï¿½ï¿½ï¿½È¤ï¿½Æ¼ï¿½(ï¿½ï¿½İ¸)ï¿½ï¿½ï¿½Ş¹ï¿½Ë¾
+Æ·ï¿½Æ£ï¿½WHEELTEC
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½wheeltec.net
+ï¿½Ô±ï¿½ï¿½ï¿½ï¿½Ì£ï¿½shop114407458.taobao.com 
+ï¿½ï¿½ï¿½ï¿½Í¨: https://minibalance.aliexpress.com/store/4455017
+ï¿½æ±¾ï¿½ï¿½V1.0
+ï¿½Ş¸ï¿½Ê±ï¿½ä£º2022-09-05
 
 Brand: WHEELTEC
 Website: wheeltec.net
 Taobao shop: shop114407458.taobao.com 
 Aliexpress: https://minibalance.aliexpress.com/store/4455017
 Version: V1.0
-Update£º2022-09-05
+Updateï¿½ï¿½2022-09-05
 
 All rights reserved
 ***********************************************/
@@ -20,7 +20,7 @@ All rights reserved
 #define __KEY_H	 
 #include "sys.h"
 #define KEY PAin(0)
-#define EN  PCin(13)//Ê¹ÄÜ¿ª¹Ø
+#define EN  PAin(1) // C8T6 ä¸Šä½¿ç”¨ PA1 ä½œä¸ºä½¿èƒ½è¾“å…¥
 void Key(void);
-void KEY_Init(void);          //°´¼ü³õÊ¼»¯
+void KEY_Init(void);          //åˆå§‹åŒ–
 #endif  

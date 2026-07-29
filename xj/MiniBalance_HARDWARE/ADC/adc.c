@@ -1,18 +1,18 @@
 /***********************************************
-¹«Ë¾£ºÂÖÈ¤¿Æ¼¼(¶«İ¸)ÓĞÏŞ¹«Ë¾
-Æ·ÅÆ£ºWHEELTEC
-¹ÙÍø£ºwheeltec.net
-ÌÔ±¦µêÆÌ£ºshop114407458.taobao.com 
-ËÙÂôÍ¨: https://minibalance.aliexpress.com/store/4455017
-°æ±¾£ºV1.0
-ĞŞ¸ÄÊ±¼ä£º2022-09-05
+ï¿½ï¿½Ë¾ï¿½ï¿½ï¿½ï¿½È¤ï¿½Æ¼ï¿½(ï¿½ï¿½İ¸)ï¿½ï¿½ï¿½Ş¹ï¿½Ë¾
+Æ·ï¿½Æ£ï¿½WHEELTEC
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½wheeltec.net
+ï¿½Ô±ï¿½ï¿½ï¿½ï¿½Ì£ï¿½shop114407458.taobao.com 
+ï¿½ï¿½ï¿½ï¿½Í¨: https://minibalance.aliexpress.com/store/4455017
+ï¿½æ±¾ï¿½ï¿½V1.0
+ï¿½Ş¸ï¿½Ê±ï¿½ä£º2022-09-05
 
 Brand: WHEELTEC
 Website: wheeltec.net
 Taobao shop: shop114407458.taobao.com 
 Aliexpress: https://minibalance.aliexpress.com/store/4455017
 Version: V1.0
-Update£º2022-09-05
+Updateï¿½ï¿½2022-09-05
 
 All rights reserved
 ***********************************************/
@@ -22,61 +22,61 @@ All rights reserved
 Function: Initialize the ADC
 Input   : none
 Output  : none
-º¯Êı¹¦ÄÜ£ºACD³õÊ¼»¯µç³ØµçÑ¹¼ì²â
-Èë¿Ú²ÎÊı: ÎŞ 
-·µ»Ø  Öµ£ºÎŞ
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ACDï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Øµï¿½Ñ¹ï¿½ï¿½ï¿½
+ï¿½ï¿½Ú²ï¿½ï¿½ï¿½: ï¿½ï¿½ 
+ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½ï¿½ï¿½
 **************************************************************************/	 		
 void Adc_Init(void)
 {    
  	ADC_InitTypeDef ADC_InitStructure; 
 	GPIO_InitTypeDef GPIO_InitStructure;
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC |RCC_APB2Periph_ADC2	, ENABLE );	  //Ê¹ÄÜADC2Í¨µÀÊ±ÖÓ
-	RCC_ADCCLKConfig(RCC_PCLK2_Div6);   //ÉèÖÃADC·ÖÆµÒò×Ó6 72M/6=12,ADC×î´óÊ±¼ä²»ÄÜ³¬¹ı14M
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA |RCC_APB2Periph_ADC2	, ENABLE );	  //ä½¿èƒ½ADC2é€šé“æ—¶é’Ÿ
+	RCC_ADCCLKConfig(RCC_PCLK2_Div6);   //é…ç½®ADCæ—¶é’Ÿåˆ†é¢‘ 72M/6=12,ADCé‡‡æ ·æ—¶é—´ä¸èƒ½è¶…è¿‡14M
 	
-	//ÉèÖÃÄ£ÄâÍ¨µÀÊäÈëÒı½Å                         
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1|GPIO_Pin_5;
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN;		//Ä£ÄâÊäÈëÒı½Å
-	GPIO_Init(GPIOC, &GPIO_InitStructure);	
+	//é…ç½®æ¨¡æ‹Ÿè¾“å…¥é€šé“ï¼šSTM32F103C8T6 ä¸Šä½¿ç”¨ PA1/PA2
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1 | GPIO_Pin_2;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN;		//æ¨¡æ‹Ÿè¾“å…¥
+	GPIO_Init(GPIOA, &GPIO_InitStructure);	
 	
 	
-	ADC_DeInit(ADC2);  //¸´Î»ADC2,½«ÍâÉè ADC2 µÄÈ«²¿¼Ä´æÆ÷ÖØÉèÎªÈ±Ê¡Öµ
-	ADC_InitStructure.ADC_Mode = ADC_Mode_Independent;	//ADC¹¤×÷Ä£Ê½:ADC1ºÍADC2¹¤×÷ÔÚ¶ÀÁ¢Ä£Ê½
-	ADC_InitStructure.ADC_ScanConvMode = DISABLE;	//Ä£Êı×ª»»¹¤×÷ÔÚµ¥Í¨µÀÄ£Ê½
-	ADC_InitStructure.ADC_ContinuousConvMode = DISABLE;	//Ä£Êı×ª»»¹¤×÷ÔÚµ¥´Î×ª»»Ä£Ê½
-	ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;	//×ª»»ÓÉÈí¼ş¶ø²»ÊÇÍâ²¿´¥·¢Æô¶¯
-	ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;	//ADCÊı¾İÓÒ¶ÔÆë
-	ADC_InitStructure.ADC_NbrOfChannel = 1;	//Ë³Ğò½øĞĞ¹æÔò×ª»»µÄADCÍ¨µÀµÄÊıÄ¿
-	ADC_Init(ADC2, &ADC_InitStructure);	//¸ù¾İADC_InitStructÖĞÖ¸¶¨µÄ²ÎÊı³õÊ¼»¯ÍâÉèADCxµÄ¼Ä´æÆ÷   
-	ADC_Cmd(ADC2, ENABLE);	//Ê¹ÄÜÖ¸¶¨µÄADC1
-	ADC_ResetCalibration(ADC2);	//Ê¹ÄÜ¸´Î»Ğ£×¼  	 
-	while(ADC_GetResetCalibrationStatus(ADC2));	//µÈ´ı¸´Î»Ğ£×¼½áÊø	
-	ADC_StartCalibration(ADC2);	 //¿ªÆôADĞ£×¼
-	while(ADC_GetCalibrationStatus(ADC2));	 //µÈ´ıĞ£×¼½áÊø
+	ADC_DeInit(ADC2);  //ï¿½ï¿½Î»ADC2,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ADC2 ï¿½ï¿½È«ï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎªÈ±Ê¡Öµ
+	ADC_InitStructure.ADC_Mode = ADC_Mode_Independent;	//ADCï¿½ï¿½ï¿½ï¿½Ä£Ê½:ADC1ï¿½ï¿½ADC2ï¿½ï¿½ï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ï¿½Ä£Ê½
+	ADC_InitStructure.ADC_ScanConvMode = DISABLE;	//Ä£ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½Í¨ï¿½ï¿½Ä£Ê½
+	ADC_InitStructure.ADC_ContinuousConvMode = DISABLE;	//Ä£ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½×ªï¿½ï¿½Ä£Ê½
+	ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;	//×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½â²¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;	//ADCï¿½ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½ï¿½ï¿½
+	ADC_InitStructure.ADC_NbrOfChannel = 1;	//Ë³ï¿½ï¿½ï¿½ï¿½Ğ¹ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ADCÍ¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿
+	ADC_Init(ADC2, &ADC_InitStructure);	//ï¿½ï¿½ï¿½ï¿½ADC_InitStructï¿½ï¿½Ö¸ï¿½ï¿½ï¿½Ä²ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ADCxï¿½Ä¼Ä´ï¿½ï¿½ï¿½   
+	ADC_Cmd(ADC2, ENABLE);	//Ê¹ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ADC1
+	ADC_ResetCalibration(ADC2);	//Ê¹ï¿½Ü¸ï¿½Î»Ğ£×¼  	 
+	while(ADC_GetResetCalibrationStatus(ADC2));	//ï¿½È´ï¿½ï¿½ï¿½Î»Ğ£×¼ï¿½ï¿½ï¿½ï¿½	
+	ADC_StartCalibration(ADC2);	 //ï¿½ï¿½ï¿½ï¿½ADĞ£×¼
+	while(ADC_GetCalibrationStatus(ADC2));	 //ï¿½È´ï¿½Ğ£×¼ï¿½ï¿½ï¿½ï¿½
 }		
 
 
 
 /**************************************************************************
 Function: AD sampling
-Input   : ch£ºChannel of ADC1
+Input   : chï¿½ï¿½Channel of ADC1
 Output  : AD conversion result
-º¯Êı¹¦ÄÜ£ºAD²ÉÑù
-Èë¿Ú²ÎÊı: ch£ºADC2 µÄÍ¨µÀ
-·µ»Ø  Öµ£ºAD×ª»»½á¹û
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ADï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½Ú²ï¿½ï¿½ï¿½: chï¿½ï¿½ADC2 ï¿½ï¿½Í¨ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½AD×ªï¿½ï¿½ï¿½ï¿½ï¿½
 **************************************************************************/	 		
 u16 Get_Adc(u8 ch)   
 {
-	  	//ÉèÖÃÖ¸¶¨ADCµÄ¹æÔò×éÍ¨µÀ£¬Ò»¸öĞòÁĞ£¬²ÉÑùÊ±¼ä
-	ADC_RegularChannelConfig(ADC2, ch, 1, ADC_SampleTime_239Cycles5 );	//ADC2,ADCÍ¨µÀ,²ÉÑùÊ±¼äÎª239.5ÖÜÆÚ	  			     
-	ADC_SoftwareStartConvCmd(ADC2, ENABLE);		//Ê¹ÄÜÖ¸¶¨µÄADC2µÄÈí¼ş×ª»»Æô¶¯¹¦ÄÜ		 
-	while(!ADC_GetFlagStatus(ADC2, ADC_FLAG_EOC ));//µÈ´ı×ª»»½áÊø
-	return ADC_GetConversionValue(ADC2);	//·µ»Ø×î½üÒ»´ÎADC1¹æÔò×éµÄ×ª»»½á¹û
+	  	//ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ADCï¿½Ä¹ï¿½ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ğ£ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	ADC_RegularChannelConfig(ADC2, ch, 1, ADC_SampleTime_239Cycles5 );	//ADC2,ADCÍ¨ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Îª239.5ï¿½ï¿½ï¿½ï¿½	  			     
+	ADC_SoftwareStartConvCmd(ADC2, ENABLE);		//Ê¹ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ADC2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½		 
+	while(!ADC_GetFlagStatus(ADC2, ADC_FLAG_EOC ));//ï¿½È´ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	return ADC_GetConversionValue(ADC2);	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ADC1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½
 }
 
-//»ñÈ¡Í¨µÀchµÄ×ª»»Öµ£¬È¡times´Î,È»ºóÆ½¾ù 
-//ch:Í¨µÀ±àºÅ
-//times:»ñÈ¡´ÎÊı
-//·µ»ØÖµ:Í¨µÀchµÄtimes´Î×ª»»½á¹ûÆ½¾ùÖµ
+//ï¿½ï¿½È¡Í¨ï¿½ï¿½chï¿½ï¿½×ªï¿½ï¿½Öµï¿½ï¿½È¡timesï¿½ï¿½,È»ï¿½ï¿½Æ½ï¿½ï¿½ 
+//ch:Í¨ï¿½ï¿½ï¿½ï¿½ï¿½
+//times:ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½
+//ï¿½ï¿½ï¿½ï¿½Öµ:Í¨ï¿½ï¿½chï¿½ï¿½timesï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½Æ½ï¿½ï¿½Öµ
 u16 Get_Adc_Average(u8 ch,u8 times)
 {
 	u32 temp_val=0;
@@ -92,15 +92,15 @@ u16 Get_Adc_Average(u8 ch,u8 times)
 /**************************************************************************
 Function: Read battery voltage
 Input   : none
-Output  : Battery voltage£¨MV£©
-º¯Êı¹¦ÄÜ£º¶ÁÈ¡µç³ØµçÑ¹ 
-Èë¿Ú²ÎÊı: ÎŞ
-·µ»Ø  Öµ£ºµç³ØµçÑ¹ µ¥Î»MV
+Output  : Battery voltageï¿½ï¿½MVï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½È¡ï¿½ï¿½Øµï¿½Ñ¹ 
+ï¿½ï¿½Ú²ï¿½ï¿½ï¿½: ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½ï¿½ï¿½Øµï¿½Ñ¹ ï¿½ï¿½Î»MV
 **************************************************************************/
 int Get_battery_volt(void)   
 {  
-	int Volt;//µç³ØµçÑ¹
-	Volt=Get_Adc(Battery_Ch)*3.3*11*100/4096;	//µç×è·ÖÑ¹£¬¾ßÌå¸ù¾İÔ­ÀíÍ¼¼òµ¥·ÖÎö¿ÉÒÔµÃµ½	
+	int Volt;//ï¿½ï¿½Øµï¿½Ñ¹
+	Volt=Get_Adc(Battery_Ch)*3.3*11*100/4096;	//ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô­ï¿½ï¿½Í¼ï¿½òµ¥·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÔµÃµï¿½	
 	return Volt;
 }
 
@@ -109,18 +109,18 @@ int Get_battery_volt(void)
 Function: Get_Voltage
 Input   : none
 Output  : none
-º¯Êı¹¦ÄÜ£º»ñÈ¡ADCµÄÖµ
-Èë¿Ú²ÎÊı: ÎŞ 
-·µ»Ø  Öµ£ºÎŞ
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½È¡ADCï¿½ï¿½Öµ
+ï¿½ï¿½Ú²ï¿½ï¿½ï¿½: ï¿½ï¿½ 
+ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½ï¿½ï¿½
 **************************************************************************/	 
-//»ñÈ¡ADCµÄÖµ
+//ï¿½ï¿½È¡ADCï¿½ï¿½Öµ
 u16 Get_Adc1(u8 ch)   
 {
-	//ÉèÖÃÖ¸¶¨ADCµÄ¹æÔò×éÍ¨µÀ£¬Ò»¸öĞòÁĞ£¬²ÉÑùÊ±¼ä
-	ADC_RegularChannelConfig(ADC1, ch, 1, ADC_SampleTime_239Cycles5 );	//ADC1,ADCÍ¨µÀ,²ÉÑùÊ±¼äÎª239.5ÖÜÆÚ	 
-	ADC_SoftwareStartConvCmd(ADC1, ENABLE);		//Ê¹ÄÜÖ¸¶¨µÄADC1µÄÈí¼ş×ª»»Æô¶¯¹¦ÄÜ	
+	//ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ADCï¿½Ä¹ï¿½ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ğ£ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	ADC_RegularChannelConfig(ADC1, ch, 1, ADC_SampleTime_239Cycles5 );	//ADC1,ADCÍ¨ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Îª239.5ï¿½ï¿½ï¿½ï¿½	 
+	ADC_SoftwareStartConvCmd(ADC1, ENABLE);		//Ê¹ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ADC1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½	
 	__nop();
-	while(!ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC ));//µÈ´ı×ª»»½áÊø
-	return ADC_GetConversionValue(ADC1);	//·µ»Ø×î½üÒ»´ÎADC1¹æÔò×éµÄ×ª»»½á¹û
+	while(!ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC ));//ï¿½È´ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	return ADC_GetConversionValue(ADC1);	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ADC1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½
 }
 

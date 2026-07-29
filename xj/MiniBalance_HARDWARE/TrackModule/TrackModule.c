@@ -151,15 +151,15 @@ void TrackModule_Init(void)
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
 
-    // ʹ�� GPIOB �� GPIOC ʱ��
-    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB | RCC_APB2Periph_GPIOC, ENABLE);
-    // ���� GPIOC �� 8��4��9 ����Ϊ��������ģʽ
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8 | GPIO_Pin_4 | GPIO_Pin_9;
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPD; // ��������ģʽ
-    GPIO_Init(GPIOC, &GPIO_InitStructure);
-    // ���� GPIOB �� 8 ����Ϊ��������ģʽ
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8;
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPD; // ��������ģʽ
+    // ʹ�� GPIOA �� GPIOB ʱ��，C8T6 上這些引脚可用
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOB, ENABLE);
+    // 配置 PA4/PA5 為下拉输入
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4 | GPIO_Pin_5;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPD; // 下拉输入模式
+    GPIO_Init(GPIOA, &GPIO_InitStructure);
+    // 配置 PB12/PB13 為下拉输入
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_12 | GPIO_Pin_13;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPD; // 下拉输入模式
     GPIO_Init(GPIOB, &GPIO_InitStructure);
 }
 

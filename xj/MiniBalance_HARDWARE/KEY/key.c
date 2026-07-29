@@ -29,14 +29,14 @@ Output  : none
 void KEY_Init(void)
 {
   GPIO_InitTypeDef GPIO_InitStructure;
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA |RCC_APB2Periph_GPIOC, ENABLE); //ʹ��PA�˿�ʱ��
-  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;	            //�˿�����
-  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;         //��������
-  GPIO_Init(GPIOA, &GPIO_InitStructure);					      //�����趨������ʼ��GPIOA 
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE); //使能PA端口时钟
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;            //PA0
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING; //浮空输入
+  GPIO_Init(GPIOA, &GPIO_InitStructure);               //初始化GPIOA
 	
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_13;	            //�˿�����
-  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;         //��������
-  GPIO_Init(GPIOC, &GPIO_InitStructure);					      //�����趨������ʼ��GPIOA 
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1;            //PA1
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING; //浮空输入
+  GPIO_Init(GPIOA, &GPIO_InitStructure);               //初始化GPIOA
 } 
 /**************************************************************************
 �������ܣ�����ɨ��
