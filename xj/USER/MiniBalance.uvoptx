@@ -101,7 +101,11 @@
         <sRunDeb>0</sRunDeb>
         <sLrtime>0</sLrtime>
         <bEvRecOn>1</bEvRecOn>
+<<<<<<< HEAD
+        <nTsel>0</nTsel>
+=======
         <nTsel>2</nTsel>
+>>>>>>> fedf9e1014aa23a66a408cd06200c94127fda3d3
         <sDll></sDll>
         <sDllPa></sDllPa>
         <sDlgDll></sDlgDll>
