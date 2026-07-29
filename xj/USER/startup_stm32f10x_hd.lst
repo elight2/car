@@ -567,7 +567,7 @@ Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
 ork --depend=..\obj\startup_stm32f10x_hd.d -o..\obj\startup_stm32f10x_hd.o -I.\
 RTE\_MiniBalance -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include -IC:\Keil_
 v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include --predefine="__UVISION_VERS
-ION SETA 524" --predefine="_RTE_ SETA 1" --predefine="STM32F10X_HD SETA 1" --li
+ION SETA 524" --predefine="_RTE_ SETA 1" --predefine="STM32F10X_MD SETA 1" --li
 st=.\startup_stm32f10x_hd.lst ..\MiniBalance_COER\startup_stm32f10x_hd.s
 
 

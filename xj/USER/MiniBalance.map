@@ -711,14 +711,14 @@ Image Symbol Table
     .text                                    0x08002718   Section        0  led.o(.text)
     .text                                    0x0800277c   Section        0  beep.o(.text)
     .text                                    0x080027f8   Section        0  key.o(.text)
-    .text                                    0x080029a8   Section        0  oled.o(.text)
-    .text                                    0x08002e54   Section        0  adc.o(.text)
-    .text                                    0x08002fd0   Section        0  motor.o(.text)
-    PWM_OutPut_TIM_GPIO_Config               0x08002fd1   Thumb Code   140  motor.o(.text)
-    PWM_OutPut_TIM_Mode_Config               0x0800305d   Thumb Code   214  motor.o(.text)
-    .text                                    0x08003154   Section        0  encoder.o(.text)
-    .text                                    0x0800332c   Section        0  usart3.o(.text)
-    .text                                    0x08003698   Section        0  trackmodule.o(.text)
+    .text                                    0x080029a4   Section        0  oled.o(.text)
+    .text                                    0x08002e50   Section        0  adc.o(.text)
+    .text                                    0x08002fcc   Section        0  motor.o(.text)
+    PWM_OutPut_TIM_GPIO_Config               0x08002fcd   Thumb Code   140  motor.o(.text)
+    PWM_OutPut_TIM_Mode_Config               0x08003059   Thumb Code   214  motor.o(.text)
+    .text                                    0x08003150   Section        0  encoder.o(.text)
+    .text                                    0x08003328   Section        0  usart3.o(.text)
+    .text                                    0x08003694   Section        0  trackmodule.o(.text)
     .text                                    0x08003988   Section        0  control.o(.text)
     .text                                    0x08003db8   Section        0  show.o(.text)
     .text                                    0x08004400   Section        2  use_no_semi_2.o(.text)
@@ -1245,44 +1245,44 @@ Image Symbol Table
     _sys_exit                                0x08002661   Thumb Code     4  usart.o(.text)
     fputc                                    0x08002665   Thumb Code    28  usart.o(.text)
     uart_init                                0x08002681   Thumb Code   138  usart.o(.text)
-    LED_Init                                 0x08002719   Thumb Code    38  led.o(.text)
-    Led_Flash                                0x0800273f   Thumb Code    44  led.o(.text)
+    LED_Init                                 0x08002719   Thumb Code    40  led.o(.text)
+    Led_Flash                                0x08002741   Thumb Code    44  led.o(.text)
     BEEP_GPIO_Config                         0x0800277d   Thumb Code    62  beep.o(.text)
     Buzzer_Alarm                             0x080027bb   Thumb Code    52  beep.o(.text)
-    KEY_Init                                 0x080027f9   Thumb Code    54  key.o(.text)
-    click_N_Double                           0x0800282f   Thumb Code   184  key.o(.text)
-    Long_press                               0x080028e7   Thumb Code    72  key.o(.text)
-    Key                                      0x0800292f   Thumb Code    70  key.o(.text)
-    OLED_WR_Byte                             0x080029a9   Thumb Code    80  oled.o(.text)
-    OLED_Refresh_Gram                        0x080029f9   Thumb Code    70  oled.o(.text)
-    OLED_Display_On                          0x08002a3f   Thumb Code    28  oled.o(.text)
-    OLED_Display_Off                         0x08002a5b   Thumb Code    28  oled.o(.text)
-    OLED_Clear                               0x08002a77   Thumb Code    42  oled.o(.text)
-    OLED_DrawPoint                           0x08002aa1   Thumb Code   100  oled.o(.text)
-    OLED_ShowChar                            0x08002b05   Thumb Code   158  oled.o(.text)
-    oled_pow                                 0x08002ba3   Thumb Code    22  oled.o(.text)
-    OLED_ShowNumber                          0x08002bb9   Thumb Code   148  oled.o(.text)
-    OLED_ShowString                          0x08002c4d   Thumb Code    68  oled.o(.text)
-    OLED_Init                                0x08002c91   Thumb Code   398  oled.o(.text)
-    OLED_Refresh_GRAM_Line                   0x08002e1f   Thumb Code    48  oled.o(.text)
-    Adc_Init                                 0x08002e55   Thumb Code   132  adc.o(.text)
-    Get_Adc                                  0x08002ed9   Thumb Code    46  adc.o(.text)
-    Get_Adc_Average                          0x08002f07   Thumb Code    46  adc.o(.text)
-    Get_battery_volt                         0x08002f35   Thumb Code    78  adc.o(.text)
-    Get_Adc1                                 0x08002f83   Thumb Code    48  adc.o(.text)
-    MiniBalance_PWM_Init                     0x08003133   Thumb Code    20  motor.o(.text)
-    Encoder_GPIO_Config                      0x08003155   Thumb Code    52  encoder.o(.text)
-    Encoder_NVIC_Config                      0x08003189   Thumb Code    60  encoder.o(.text)
-    Encoder_TIM_Mode_Config                  0x080031c5   Thumb Code   186  encoder.o(.text)
-    Encoder_Init                             0x0800327f   Thumb Code    16  encoder.o(.text)
-    Read_Encoder                             0x0800328f   Thumb Code    96  encoder.o(.text)
-    TIM4_IRQHandler                          0x080032ef   Thumb Code    20  encoder.o(.text)
-    TIM8_UP_IRQHandler                       0x08003303   Thumb Code    20  encoder.o(.text)
-    uart3_init                               0x0800332d   Thumb Code   156  usart3.o(.text)
-    USART3_IRQHandler                        0x080033c9   Thumb Code   394  usart3.o(.text)
-    AT_Command_Capture                       0x08003553   Thumb Code   224  usart3.o(.text)
-    IRDM_line_inspection                     0x08003699   Thumb Code   608  trackmodule.o(.text)
-    TrackModule_Init                         0x080038f9   Thumb Code    56  trackmodule.o(.text)
+    KEY_Init                                 0x080027f9   Thumb Code    52  key.o(.text)
+    click_N_Double                           0x0800282d   Thumb Code   184  key.o(.text)
+    Long_press                               0x080028e5   Thumb Code    72  key.o(.text)
+    Key                                      0x0800292d   Thumb Code    70  key.o(.text)
+    OLED_WR_Byte                             0x080029a5   Thumb Code    80  oled.o(.text)
+    OLED_Refresh_Gram                        0x080029f5   Thumb Code    70  oled.o(.text)
+    OLED_Display_On                          0x08002a3b   Thumb Code    28  oled.o(.text)
+    OLED_Display_Off                         0x08002a57   Thumb Code    28  oled.o(.text)
+    OLED_Clear                               0x08002a73   Thumb Code    42  oled.o(.text)
+    OLED_DrawPoint                           0x08002a9d   Thumb Code   100  oled.o(.text)
+    OLED_ShowChar                            0x08002b01   Thumb Code   158  oled.o(.text)
+    oled_pow                                 0x08002b9f   Thumb Code    22  oled.o(.text)
+    OLED_ShowNumber                          0x08002bb5   Thumb Code   148  oled.o(.text)
+    OLED_ShowString                          0x08002c49   Thumb Code    68  oled.o(.text)
+    OLED_Init                                0x08002c8d   Thumb Code   398  oled.o(.text)
+    OLED_Refresh_GRAM_Line                   0x08002e1b   Thumb Code    48  oled.o(.text)
+    Adc_Init                                 0x08002e51   Thumb Code   132  adc.o(.text)
+    Get_Adc                                  0x08002ed5   Thumb Code    46  adc.o(.text)
+    Get_Adc_Average                          0x08002f03   Thumb Code    46  adc.o(.text)
+    Get_battery_volt                         0x08002f31   Thumb Code    78  adc.o(.text)
+    Get_Adc1                                 0x08002f7f   Thumb Code    48  adc.o(.text)
+    MiniBalance_PWM_Init                     0x0800312f   Thumb Code    20  motor.o(.text)
+    Encoder_GPIO_Config                      0x08003151   Thumb Code    52  encoder.o(.text)
+    Encoder_NVIC_Config                      0x08003185   Thumb Code    60  encoder.o(.text)
+    Encoder_TIM_Mode_Config                  0x080031c1   Thumb Code   186  encoder.o(.text)
+    Encoder_Init                             0x0800327b   Thumb Code    16  encoder.o(.text)
+    Read_Encoder                             0x0800328b   Thumb Code    96  encoder.o(.text)
+    TIM4_IRQHandler                          0x080032eb   Thumb Code    20  encoder.o(.text)
+    TIM8_UP_IRQHandler                       0x080032ff   Thumb Code    20  encoder.o(.text)
+    uart3_init                               0x08003329   Thumb Code   156  usart3.o(.text)
+    USART3_IRQHandler                        0x080033c5   Thumb Code   394  usart3.o(.text)
+    AT_Command_Capture                       0x0800354f   Thumb Code   224  usart3.o(.text)
+    IRDM_line_inspection                     0x08003695   Thumb Code   608  trackmodule.o(.text)
+    TrackModule_Init                         0x080038f5   Thumb Code    54  trackmodule.o(.text)
     Set_Pwm                                  0x08003989   Thumb Code    84  control.o(.text)
     PWM_Limit                                0x080039dd   Thumb Code    42  control.o(.text)
     Incremental_PI_Right                     0x08003a07   Thumb Code   138  control.o(.text)
@@ -1441,9 +1441,9 @@ Memory Map of the image
 
   Image Entry point : 0x08000131
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x0000730c, Max: 0x00040000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x0000730c, Max: 0x00010000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00007224, Max: 0x00040000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00007224, Max: 0x00010000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -1517,13 +1517,13 @@ Memory Map of the image
     0x08002660   0x08002660   0x000000b8   Code   RO          559    .text               usart.o
     0x08002718   0x08002718   0x00000064   Code   RO          580    .text               led.o
     0x0800277c   0x0800277c   0x0000007c   Code   RO          593    .text               beep.o
-    0x080027f8   0x080027f8   0x000001b0   Code   RO          606    .text               key.o
-    0x080029a8   0x080029a8   0x000004ac   Code   RO          619    .text               oled.o
-    0x08002e54   0x08002e54   0x0000017c   Code   RO          641    .text               adc.o
-    0x08002fd0   0x08002fd0   0x00000184   Code   RO          656    .text               motor.o
-    0x08003154   0x08003154   0x000001d8   Code   RO          668    .text               encoder.o
-    0x0800332c   0x0800332c   0x0000036c   Code   RO          680    .text               usart3.o
-    0x08003698   0x08003698   0x000002f0   Code   RO          700    .text               trackmodule.o
+    0x080027f8   0x080027f8   0x000001ac   Code   RO          606    .text               key.o
+    0x080029a4   0x080029a4   0x000004ac   Code   RO          619    .text               oled.o
+    0x08002e50   0x08002e50   0x0000017c   Code   RO          641    .text               adc.o
+    0x08002fcc   0x08002fcc   0x00000184   Code   RO          656    .text               motor.o
+    0x08003150   0x08003150   0x000001d8   Code   RO          668    .text               encoder.o
+    0x08003328   0x08003328   0x0000036c   Code   RO          680    .text               usart3.o
+    0x08003694   0x08003694   0x000002f4   Code   RO          700    .text               trackmodule.o
     0x08003988   0x08003988   0x00000430   Code   RO          718    .text               control.o
     0x08003db8   0x08003db8   0x00000648   Code   RO          737    .text               show.o
     0x08004400   0x08004400   0x00000002   Code   RO          752    .text               c_w.l(use_no_semi_2.o)
@@ -1609,7 +1609,7 @@ Memory Map of the image
     0x08007204   0x08007204   0x00000020   Data   RO         1089    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08007224, Size: 0x00000ba0, Max: 0x0000c000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08007224, Size: 0x00000ba0, Max: 0x00005000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -1644,14 +1644,14 @@ Image component sizes
 
        380         30          0          0          0       1501   adc.o
        124         10          0          4          0        728   beep.o
-      1072        110          0         64         32       4101   control.o
+      1072        110          0         64         32       4109   control.o
          0          0          0          0          0         32   core_cm3.o
        212         18          0          4          0        963   delay.o
-       472         22          0          0          0       1731   encoder.o
-       432         52          0         16          0       1513   key.o
-       100         18          0          4          0        689   led.o
+       472         22          0          0          0       1735   encoder.o
+       428         50          0         16          0       1513   key.o
+       100         16          0          4          0        685   led.o
         98          0          0          0          0       1371   minibalance.o
-       220         22          0          0          0     215433   misc.o
+       220         22          0          0          0     214037   misc.o
        388         14          0          0          0       1191   motor.o
       1196         40       2660          0       1024       4830   oled.o
       1608        282          0          1          0       1169   show.o
@@ -1664,12 +1664,12 @@ Image component sizes
       1032         22          0          0          0       8380   stm32f10x_usart.o
        712         44          0          0          0       2759   sys.o
        480         38          0         20          0       1623   system_stm32f10x.o
-       752        104          0         52          0       2485   trackmodule.o
+       756        110          0         52          0       2485   trackmodule.o
        184         14          0          4          0       2854   usart.o
        876        112         89         40         50       2048   usart3.o
 
     ----------------------------------------------------------------------
-     16940       1166       3094        232       2644     353365   Object Totals
+     16940       1168       3094        232       2644     351977   Object Totals
          0          0         32          0          0          0   (incl. Generated)
          8          0          9          3          2          0   (incl. Padding)
 
@@ -1770,9 +1770,9 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     25982       1772       3238        232       2744     353777   Grand Totals
-     25982       1772       3238        232       2744     353777   ELF Image Totals
-     25982       1772       3238        232          0          0   ROM Totals
+     25982       1774       3238        232       2744     352389   Grand Totals
+     25982       1774       3238        232       2744     352389   ELF Image Totals
+     25982       1774       3238        232          0          0   ROM Totals
 
 ==============================================================================
 
