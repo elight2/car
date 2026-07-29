@@ -1,18 +1,18 @@
 /***********************************************
-¹«Ë¾£ºÂÖÈ¤¿Æ¼¼(¶«Ý¸)ÓÐÏÞ¹«Ë¾
-Æ·ÅÆ£ºWHEELTEC
-¹ÙÍø£ºwheeltec.net
-ÌÔ±¦µêÆÌ£ºshop114407458.taobao.com 
-ËÙÂôÍ¨: https://minibalance.aliexpress.com/store/4455017
-°æ±¾£ºV1.0
-ÐÞ¸ÄÊ±¼ä£º2022-09-05
+ï¿½ï¿½Ë¾ï¿½ï¿½ï¿½ï¿½È¤ï¿½Æ¼ï¿½(ï¿½ï¿½Ý¸)ï¿½ï¿½ï¿½Þ¹ï¿½Ë¾
+Æ·ï¿½Æ£ï¿½WHEELTEC
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½wheeltec.net
+ï¿½Ô±ï¿½ï¿½ï¿½ï¿½Ì£ï¿½shop114407458.taobao.com 
+ï¿½ï¿½ï¿½ï¿½Í¨: https://minibalance.aliexpress.com/store/4455017
+ï¿½æ±¾ï¿½ï¿½V1.0
+ï¿½Þ¸ï¿½Ê±ï¿½ä£º2022-09-05
 
 Brand: WHEELTEC
 Website: wheeltec.net
 Taobao shop: shop114407458.taobao.com 
 Aliexpress: https://minibalance.aliexpress.com/store/4455017
 Version: V1.0
-Update£º2022-09-05
+Updateï¿½ï¿½2022-09-05
 
 All rights reserved
 ***********************************************/
@@ -21,14 +21,14 @@ All rights reserved
 Function: OLED display
 Input   : none
 Output  : none
-º¯Êý¹¦ÄÜ£ºOLEDÏÔÊ¾
-Èë¿Ú²ÎÊý£ºÎÞ
-·µ»Ø  Öµ£ºÎÞ
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½OLEDï¿½ï¿½Ê¾
+ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½ï¿½ï¿½
 **************************************************************************/
 void oled_show(void)
 {
-	memset(OLED_GRAM,0, 128*8*sizeof(u8));	//GRAMÇåÁãµ«²»Á¢¼´Ë¢ÐÂ£¬·ÀÖ¹»¨ÆÁ
-		//=============µÚÒ»ÐÐÏÔÊ¾Ð¡³µÄ£Ê½=======================//
+	memset(OLED_GRAM,0, 128*8*sizeof(u8));	//GRAMï¿½ï¿½ï¿½ãµ«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë¢ï¿½Â£ï¿½ï¿½ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½
+		//=============ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ê¾Ð¡ï¿½ï¿½Ä£Ê½=======================//
 	OLED_ShowString(0,0,"IRDM:");
 	if(DH1)  OLED_ShowString(50,0,"1");
 	else     OLED_ShowString(50,0,"0");
@@ -73,7 +73,7 @@ void oled_show(void)
 	OLED_ShowString(62,50,".");
 	OLED_ShowString(86,50,"V");
 	OLED_ShowNumber(48,50,Voltage/100,2,12);
-	OLED_ShowNumber(70,50,(int)(Voltage/10)%10,1,12);//ÏÔÊ¾µçÑ¹
+	OLED_ShowNumber(70,50,(int)(Voltage/10)%10,1,12);//ï¿½ï¿½Ê¾ï¿½ï¿½Ñ¹
 	OLED_ShowNumber(78,50,(int)Voltage%10,1,12);
 	if(EN==1)        OLED_ShowString(105,50, "OFF");
 	else        	 OLED_ShowString(105,50, "ON ");
@@ -88,29 +88,29 @@ void oled_show(void)
 Function: Send data to APP
 Input   : none
 Output  : none
-º¯Êý¹¦ÄÜ£ºÏòAPP·¢ËÍÊý¾Ý
-Èë¿Ú²ÎÊý£ºÎÞ
-·µ»Ø  Öµ£ºÎÞ
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½APPï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½ï¿½ï¿½
 **************************************************************************/
 void APP_Show(void)
 {    
   static u8 flag;
 	int Encoder_Left_Show,Encoder_Right_Show,Voltage_Show;
-	Voltage_Show=(Voltage-1110)*2/3;		if(Voltage_Show<0)Voltage_Show=0;if(Voltage_Show>100) Voltage_Show=100;   //¶ÔµçÑ¹Êý¾Ý½øÐÐ´¦Àí
-	Encoder_Right_Show=MotorB.Current_Encoder*1000; if(Encoder_Right_Show<0) Encoder_Right_Show=-Encoder_Right_Show;			  //¶Ô±àÂëÆ÷Êý¾Ý¾ÍÐÐÊý¾Ý´¦Àí±ãÓÚÍ¼ÐÎ»¯
+	Voltage_Show=(Voltage-1110)*2/3;		if(Voltage_Show<0)Voltage_Show=0;if(Voltage_Show>100) Voltage_Show=100;   //ï¿½Ôµï¿½Ñ¹ï¿½ï¿½ï¿½Ý½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½
+	Encoder_Right_Show=MotorB.Current_Encoder*1000; if(Encoder_Right_Show<0) Encoder_Right_Show=-Encoder_Right_Show;			  //ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½Î»ï¿½
 	Encoder_Left_Show=MotorA.Current_Encoder*1000;  if(Encoder_Left_Show<0) Encoder_Left_Show=-Encoder_Left_Show;
 	flag=!flag;
-	if(PID_Send==1)			//·¢ËÍPID²ÎÊý,ÔÚAPPµ÷²Î½çÃæÏÔÊ¾
+	if(PID_Send==1)			//ï¿½ï¿½ï¿½ï¿½PIDï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½APPï¿½ï¿½ï¿½Î½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾
 	{
-		printf("{C%d:%d:%d:%d:%d:%d:%d:%d:%d}$",(int)Velocity_KP,(int)Velocity_KI,(int)(BaseSpeed),(int)(Turn90Angle),(int)(TurnMaxAngle),(int)(TurnMidAngle),(int)(TurnMinAngle),(int)ForwardLimit,0);//´òÓ¡µ½APPÉÏÃæ	
+		printf("{C%d:%d:%d:%d:%d:%d:%d:%d:%d}$",(int)Velocity_KP,(int)Velocity_KI,(int)(BaseSpeed),(int)(Turn90Angle),(int)(TurnMaxAngle),(int)(TurnMidAngle),(int)(TurnMinAngle),(int)ForwardLimit,0);//ï¿½ï¿½Ó¡ï¿½ï¿½APPï¿½ï¿½ï¿½ï¿½	
 		PID_Send=0;	
 	}	
-   else	if(flag==0)		// ·¢ËÍµç³ØµçÑ¹£¬ËÙ¶È£¬½Ç¶ÈµÈ²ÎÊý£¬ÔÚAPPÊ×Ò³ÏÔÊ¾
+   else	if(flag==0)		// ï¿½ï¿½ï¿½Íµï¿½Øµï¿½Ñ¹ï¿½ï¿½ï¿½Ù¶È£ï¿½ï¿½Ç¶ÈµÈ²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½APPï¿½ï¿½Ò³ï¿½ï¿½Ê¾
 	 {
-		 printf("{A%d:%d:%d}$",(int)Encoder_Left_Show,(int)Encoder_Right_Show,(int)Voltage_Show); //´òÓ¡µ½APPÉÏÃæ
+		 printf("{A%d:%d:%d}$",(int)Encoder_Left_Show,(int)Encoder_Right_Show,(int)Voltage_Show); //ï¿½ï¿½Ó¡ï¿½ï¿½APPï¿½ï¿½ï¿½ï¿½
 	 }
-	 else								//·¢ËÍÐ¡³µ×ËÌ¬½Ç£¬ÔÚ²¨ÐÎ½çÃæÏÔÊ¾
-	   printf("{B%d:%d:%d}$",(int)0,(int)0,(int)0); //¿É°´¸ñÊ½×ÔÐÐÔö¼ÓÏÔÊ¾²¨ÐÎ£¬×î¶à¿ÉÏÔÊ¾Îå¸ö
+	 else								//ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½Ì¬ï¿½Ç£ï¿½ï¿½Ú²ï¿½ï¿½Î½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾
+	   printf("{B%d:%d:%d}$",(int)0,(int)0,(int)0); //ï¿½É°ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Î£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½
 }
 
 
