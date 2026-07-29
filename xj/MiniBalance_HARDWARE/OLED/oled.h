@@ -24,10 +24,10 @@ All rights reserved
 
 
 
-/* 4引脚 OLED 控制线定义：SCL / SDA / RST / DC */
+/* 4引脚 OLED 定义：VCC / GND / SDA / SCK */
 #define OLED_SCLK_GPIO_PORT    	GPIOC				      /* GPIO端口 */
 #define OLED_SCLK_GPIO_CLK 	    RCC_APB2Periph_GPIOC		/* GPIO端口时钟 */
-#define OLED_SCLK_GPIO_PIN		GPIO_Pin_14			        /* SCL */
+#define OLED_SCLK_GPIO_PIN		GPIO_Pin_14			        /* SCK */
 
 #define OLED_SDIN_GPIO_PORT    	GPIOB				      /* GPIO端口 */
 #define OLED_SDIN_GPIO_CLK 	    RCC_APB2Periph_GPIOB		/* GPIO端口时钟 */
@@ -35,11 +35,11 @@ All rights reserved
 
 #define OLED_RST_GPIO_PORT    	GPIOB				      /* GPIO端口 */
 #define OLED_RST_GPIO_CLK 	    RCC_APB2Periph_GPIOB		/* GPIO端口时钟 */
-#define OLED_RST_GPIO_PIN		GPIO_Pin_4			        /* RST */
+#define OLED_RST_GPIO_PIN		GPIO_Pin_4			        /* 保留，当前 4 引脚 OLED 不使用 */
 
 #define OLED_RS_GPIO_PORT    	GPIOB				      /* GPIO端口 */
 #define OLED_RS_GPIO_CLK 	    RCC_APB2Periph_GPIOB		/* GPIO端口时钟 */
-#define OLED_RS_GPIO_PIN		GPIO_Pin_3			        /* DC */
+#define OLED_RS_GPIO_PIN		GPIO_Pin_3			        /* 保留，当前 4 引脚 OLED 不使用 */
 
 
 
