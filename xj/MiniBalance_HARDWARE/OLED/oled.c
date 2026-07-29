@@ -49,25 +49,68 @@ Output  : none
 入口参数：dat:要写入的数据/命令，cmd:数据/命令标志 0,表示命令;1,表示数据
 返回  值：无
 **************************************************************************/  
+/* I2C bit-bang implementation for 4-pin OLED (GND, SCL, SDA, VDD)
+   SSD1306 I2C address assumed 0x3C (0x78 >> write). Control byte: 0x00 = command, 0x40 = data */
+static void I2C_Delay(void)
+{
+	volatile int i = 6;
+	while(i--) __NOP();
+}
+
+static void I2C_Start(void)
+{
+	GPIO_SetBits(OLED_SCLK_GPIO_PORT, OLED_SCLK_GPIO_PIN);
+	GPIO_SetBits(OLED_SDIN_GPIO_PORT, OLED_SDIN_GPIO_PIN);
+	I2C_Delay();
+	GPIO_ResetBits(OLED_SDIN_GPIO_PORT, OLED_SDIN_GPIO_PIN);
+	I2C_Delay();
+	GPIO_ResetBits(OLED_SCLK_GPIO_PORT, OLED_SCLK_GPIO_PIN);
+	I2C_Delay();
+}
+
+static void I2C_Stop(void)
+{
+	GPIO_ResetBits(OLED_SCLK_GPIO_PORT, OLED_SCLK_GPIO_PIN);
+	GPIO_ResetBits(OLED_SDIN_GPIO_PORT, OLED_SDIN_GPIO_PIN);
+	I2C_Delay();
+	GPIO_SetBits(OLED_SCLK_GPIO_PORT, OLED_SCLK_GPIO_PIN);
+	I2C_Delay();
+	GPIO_SetBits(OLED_SDIN_GPIO_PORT, OLED_SDIN_GPIO_PIN);
+	I2C_Delay();
+}
+
+static void I2C_SendByte(u8 dat)
+{
+	for (int i = 0; i < 8; i++) {
+		if (dat & 0x80)
+			GPIO_SetBits(OLED_SDIN_GPIO_PORT, OLED_SDIN_GPIO_PIN);
+		else
+			GPIO_ResetBits(OLED_SDIN_GPIO_PORT, OLED_SDIN_GPIO_PIN);
+		I2C_Delay();
+		GPIO_SetBits(OLED_SCLK_GPIO_PORT, OLED_SCLK_GPIO_PIN);
+		I2C_Delay();
+		GPIO_ResetBits(OLED_SCLK_GPIO_PORT, OLED_SCLK_GPIO_PIN);
+		dat <<= 1;
+	}
+	/* ACK bit - release SDA and pulse SCL */
+	GPIO_SetBits(OLED_SDIN_GPIO_PORT, OLED_SDIN_GPIO_PIN); // release
+	I2C_Delay();
+	GPIO_SetBits(OLED_SCLK_GPIO_PORT, OLED_SCLK_GPIO_PIN);
+	I2C_Delay();
+	GPIO_ResetBits(OLED_SCLK_GPIO_PORT, OLED_SCLK_GPIO_PIN);
+	I2C_Delay();
+}
+
 void OLED_WR_Byte(u8 dat,u8 cmd)
-{	
-	u8 i;			  
-	if(cmd)
-	  OLED_RS_Set();
-	else 
-	  OLED_RS_Clr();		  
-	for(i=0;i<8;i++)
-	{			  
-		OLED_SCLK_Clr();
-		if(dat&0x80)
-		   OLED_SDIN_Set();
-		else 
-		   OLED_SDIN_Clr();
-		OLED_SCLK_Set();
-		dat<<=1;   
-	}				 		  
-	OLED_RS_Set();   	  
-} 
+{
+	u8 control = cmd ? 0x40 : 0x00; // data or command control byte
+	I2C_Start();
+	/* SSD1306 7-bit address 0x3C -> write 0x78 */
+	I2C_SendByte(0x78);
+	I2C_SendByte(control);
+	I2C_SendByte(dat);
+	I2C_Stop();
+}
 
 	  	  
 /**************************************************************************
@@ -249,47 +292,28 @@ void OLED_Init(void)
 	RCC_APB2PeriphClockCmd( OLED_SCLK_GPIO_CLK|OLED_SDIN_GPIO_CLK, ENABLE); 
 	RCC_APB2PeriphClockCmd( OLED_RST_GPIO_CLK|OLED_RS_GPIO_CLK, ENABLE); 
 
-	/*选择要控制OLED的GPIO*/															   
-	GPIO_InitStructure.GPIO_Pin = OLED_SCLK_GPIO_PIN;	
-	/*设置GPIO模式为通用推挽输出*/
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;   
+	/*选择要控制OLED的GPIO - SCL */                                                               
+	GPIO_InitStructure.GPIO_Pin = OLED_SCLK_GPIO_PIN; 	
+	/*设置GPIO模式为开漏输出，用于I2C位抖*/
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_OD;   
 	/*设置GPIO速率为50MHz */   
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; 
 	/*调用库函数，初始化控制OLED的GPIO*/
 	GPIO_Init(OLED_SCLK_GPIO_PORT, &GPIO_InitStructure);			 
 
 
-	/*选择要控制OLED的GPIO*/															   
-	GPIO_InitStructure.GPIO_Pin = OLED_SDIN_GPIO_PIN;	
-	/*设置GPIO模式为通用推挽输出*/
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;   
+	/*选择要控制OLED的GPIO - SDA */                                                               
+	GPIO_InitStructure.GPIO_Pin = OLED_SDIN_GPIO_PIN; 	
+	/*设置GPIO模式为开漏输出，用于I2C位抖*/
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_OD;   
 	/*设置GPIO速率为50MHz */   
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; 
 	/*调用库函数，初始化控制OLED的GPIO*/
 	GPIO_Init(OLED_SDIN_GPIO_PORT, &GPIO_InitStructure);			 
 
 
-	/*选择要控制OLED的GPIO*/															   
-	GPIO_InitStructure.GPIO_Pin = OLED_RST_GPIO_PIN;	
-	/*设置GPIO模式为通用推挽输出*/
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;   
-	/*设置GPIO速率为50MHz */   
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; 
-	/*调用库函数，初始化控制OLED的GPIO*/
-	GPIO_Init(OLED_RST_GPIO_PORT, &GPIO_InitStructure);			 
-
-	/*选择要控制OLED的GPIO*/															   
-	GPIO_InitStructure.GPIO_Pin = OLED_RS_GPIO_PIN;	
-	/*设置GPIO模式为通用推挽输出*/
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;   
-	/*设置GPIO速率为50MHz */   
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; 
-	/*调用库函数，初始化控制OLED的GPIO*/
-	GPIO_Init(OLED_RS_GPIO_PORT, &GPIO_InitStructure);			 
-
-	OLED_RST_Clr();
-	delay_ms(100);
-	OLED_RST_Set(); 
+	/* RST and DC not used on 4-pin modules (GND,SCL,SDA,VDD) */
+	delay_ms(10);
 					  
 	OLED_WR_Byte(0xAE,OLED_CMD); //关闭显示
 	OLED_WR_Byte(0xD5,OLED_CMD); //设置时钟分频因子,震荡频率

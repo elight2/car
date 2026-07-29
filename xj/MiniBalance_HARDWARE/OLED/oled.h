@@ -45,11 +45,15 @@ All rights reserved
 
 
 //-----------------OLED�˿ڶ���---------------- 
-#define OLED_RST_Clr() PBout(4)=0   //RST
-#define OLED_RST_Set() PBout(4)=1   //RST
+#define OLED_USE_I2C
 
-#define OLED_RS_Clr() PBout(3)=0    //DC
-#define OLED_RS_Set() PBout(3)=1    //DC
+/* For 4-pin modules (GND, SCL, SDA, VDD) RST/DC pins are not present.
+	Make these no-ops to avoid toggling unrelated pins. */
+#define OLED_RST_Clr() ((void)0)
+#define OLED_RST_Set() ((void)0)
+
+#define OLED_RS_Clr()  ((void)0)
+#define OLED_RS_Set()  ((void)0)
 
 #define OLED_SCLK_Clr()  PCout(14)=0  //SCL
 #define OLED_SCLK_Set()  PCout(14)=1   //SCL
