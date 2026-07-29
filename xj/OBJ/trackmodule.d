@@ -3,7 +3,7 @@
 ..\obj\trackmodule.o: ..\SYSTEM\sys\sys.h
 ..\obj\trackmodule.o: ..\USER\stm32f10x.h
 ..\obj\trackmodule.o: ..\MiniBalance_COER\core_cm3.h
-..\obj\trackmodule.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\trackmodule.o: D:\Applications\keil\app\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\trackmodule.o: ..\USER\system_stm32f10x.h
 ..\obj\trackmodule.o: ..\USER\stm32f10x_conf.h
 ..\obj\trackmodule.o: ..\STM32F10x_FWLib\inc\stm32f10x_adc.h
@@ -33,7 +33,7 @@
 ..\obj\trackmodule.o: ..\SYSTEM\delay\delay.h
 ..\obj\trackmodule.o: ..\SYSTEM\sys\sys.h
 ..\obj\trackmodule.o: ..\SYSTEM\usart\usart.h
-..\obj\trackmodule.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+..\obj\trackmodule.o: D:\Applications\keil\app\ARM\ARMCC\Bin\..\include\stdio.h
 ..\obj\trackmodule.o: ..\MiniBalance_HARDWARE\LED\led.h
 ..\obj\trackmodule.o: ..\MiniBalance_HARDWARE\KEY\key.h
 ..\obj\trackmodule.o: ..\MiniBalance_HARDWARE\beep\beep.h
@@ -45,6 +45,6 @@
 ..\obj\trackmodule.o: ..\MiniBalance\show\show.h
 ..\obj\trackmodule.o: ..\MiniBalance_HARDWARE\TrackModule\TRACKMODULE.h
 ..\obj\trackmodule.o: ..\MiniBalance_HARDWARE\USART3\usart3.h
-..\obj\trackmodule.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-..\obj\trackmodule.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
-..\obj\trackmodule.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+..\obj\trackmodule.o: D:\Applications\keil\app\ARM\ARMCC\Bin\..\include\string.h
+..\obj\trackmodule.o: D:\Applications\keil\app\ARM\ARMCC\Bin\..\include\math.h
+..\obj\trackmodule.o: D:\Applications\keil\app\ARM\ARMCC\Bin\..\include\stdlib.h

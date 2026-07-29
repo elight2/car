@@ -3,7 +3,7 @@
 ..\obj\motor.o: ..\SYSTEM\sys\sys.h
 ..\obj\motor.o: ..\USER\stm32f10x.h
 ..\obj\motor.o: ..\MiniBalance_COER\core_cm3.h
-..\obj\motor.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\motor.o: D:\Applications\keil\app\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\motor.o: ..\USER\system_stm32f10x.h
 ..\obj\motor.o: ..\USER\stm32f10x_conf.h
 ..\obj\motor.o: ..\STM32F10x_FWLib\inc\stm32f10x_adc.h
@@ -33,7 +33,7 @@
 ..\obj\motor.o: ..\SYSTEM\delay\delay.h
 ..\obj\motor.o: ..\SYSTEM\sys\sys.h
 ..\obj\motor.o: ..\SYSTEM\usart\usart.h
-..\obj\motor.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+..\obj\motor.o: D:\Applications\keil\app\ARM\ARMCC\Bin\..\include\stdio.h
 ..\obj\motor.o: ..\MiniBalance_HARDWARE\LED\led.h
 ..\obj\motor.o: ..\MiniBalance_HARDWARE\KEY\key.h
 ..\obj\motor.o: ..\MiniBalance_HARDWARE\beep\beep.h
@@ -45,6 +45,6 @@
 ..\obj\motor.o: ..\MiniBalance\show\show.h
 ..\obj\motor.o: ..\MiniBalance_HARDWARE\TrackModule\TRACKMODULE.h
 ..\obj\motor.o: ..\MiniBalance_HARDWARE\USART3\usart3.h
-..\obj\motor.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-..\obj\motor.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
-..\obj\motor.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+..\obj\motor.o: D:\Applications\keil\app\ARM\ARMCC\Bin\..\include\string.h
+..\obj\motor.o: D:\Applications\keil\app\ARM\ARMCC\Bin\..\include\math.h
+..\obj\motor.o: D:\Applications\keil\app\ARM\ARMCC\Bin\..\include\stdlib.h
