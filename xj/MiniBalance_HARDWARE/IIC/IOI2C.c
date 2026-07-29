@@ -1,18 +1,18 @@
 /***********************************************
-¹«Ë¾£ºÂÖÈ¤¿Æ¼¼(¶«Ý¸)ÓÐÏÞ¹«Ë¾
-Æ·ÅÆ£ºWHEELTEC
-¹ÙÍø£ºwheeltec.net
-ÌÔ±¦µêÆÌ£ºshop114407458.taobao.com 
-ËÙÂôÍ¨: https://minibalance.aliexpress.com/store/4455017
-°æ±¾£ºV1.0
-ÐÞ¸ÄÊ±¼ä£º2022-09-05
+ï¿½ï¿½Ë¾ï¿½ï¿½ï¿½ï¿½È¤ï¿½Æ¼ï¿½(ï¿½ï¿½Ý¸)ï¿½ï¿½ï¿½Þ¹ï¿½Ë¾
+Æ·ï¿½Æ£ï¿½WHEELTEC
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½wheeltec.net
+ï¿½Ô±ï¿½ï¿½ï¿½ï¿½Ì£ï¿½shop114407458.taobao.com 
+ï¿½ï¿½ï¿½ï¿½Í¨: https://minibalance.aliexpress.com/store/4455017
+ï¿½æ±¾ï¿½ï¿½V1.0
+ï¿½Þ¸ï¿½Ê±ï¿½ä£º2022-09-05
 
 Brand: WHEELTEC
 Website: wheeltec.net
 Taobao shop: shop114407458.taobao.com 
 Aliexpress: https://minibalance.aliexpress.com/store/4455017
 Version: V1.0
-Update£º2022-09-05
+Updateï¿½ï¿½2022-09-05
 
 All rights reserved
 ***********************************************/
@@ -24,31 +24,31 @@ All rights reserved
 Function: IIC pin initialization
 Input   : none
 Output  : none
-º¯Êý¹¦ÄÜ£ºIICÒý½Å³õÊ¼»¯
-Èë¿Ú²ÎÊý£ºÎÞ
-·µ»Ø  Öµ£ºÎÞ
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½IICï¿½ï¿½ï¿½Å³ï¿½Ê¼ï¿½ï¿½
+ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½ï¿½ï¿½
 **************************************************************************/
 void IIC_Init(void)
 {			
   GPIO_InitTypeDef GPIO_InitStructure;
-  RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE); //Ê¹ÄÜPB¶Ë¿ÚÊ±ÖÓ
-  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_14|GPIO_Pin_15;	//¶Ë¿ÚÅäÖÃ
-  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;      //ÍÆÍìÊä³ö
+  RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE); //Ê¹ï¿½ï¿½PBï¿½Ë¿ï¿½Ê±ï¿½ï¿½
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_14|GPIO_Pin_15;	//ï¿½Ë¿ï¿½ï¿½ï¿½ï¿½ï¿½
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;      //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;     //50M
-  GPIO_Init(GPIOB, &GPIO_InitStructure);					      //¸ù¾ÝÉè¶¨²ÎÊý³õÊ¼»¯GPIOB 
+  GPIO_Init(GPIOB, &GPIO_InitStructure);					      //ï¿½ï¿½ï¿½ï¿½ï¿½è¶¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½GPIOB 
 }
 
 /**************************************************************************
 Function: Simulate IIC start signal
 Input   : none
 Output  : 1
-º¯Êý¹¦ÄÜ£ºÄ£ÄâIICÆðÊ¼ÐÅºÅ
-Èë¿Ú²ÎÊý£ºÎÞ
-·µ»Ø  Öµ£º1
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½Ä£ï¿½ï¿½IICï¿½ï¿½Ê¼ï¿½Åºï¿½
+ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½1
 **************************************************************************/
 int IIC_Start(void)
 {
-	SDA_OUT();     //sdaÏßÊä³ö
+	SDA_OUT();     //sdaï¿½ï¿½ï¿½ï¿½ï¿½
 	IIC_SDA=1;
 	if(!READ_SDA)return 0;	
 	IIC_SCL=1;
@@ -56,7 +56,7 @@ int IIC_Start(void)
  	IIC_SDA=0; //START:when CLK is high,DATA change form high to low 
 	if(READ_SDA)return 0;
 	delay_us(1);
-	IIC_SCL=0;//Ç¯×¡I2C×ÜÏß£¬×¼±¸·¢ËÍ»ò½ÓÊÕÊý¾Ý 
+	IIC_SCL=0;//Ç¯×¡I2Cï¿½ï¿½ï¿½ß£ï¿½×¼ï¿½ï¿½ï¿½ï¿½ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	return 1;
 }
 
@@ -64,33 +64,33 @@ int IIC_Start(void)
 Function: Analog IIC end signal
 Input   : none
 Output  : none
-º¯Êý¹¦ÄÜ£ºÄ£ÄâIIC½áÊøÐÅºÅ
-Èë¿Ú²ÎÊý£ºÎÞ
-·µ»Ø  Öµ£ºÎÞ
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½Ä£ï¿½ï¿½IICï¿½ï¿½ï¿½ï¿½ï¿½Åºï¿½
+ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½ï¿½ï¿½
 **************************************************************************/	  
 void IIC_Stop(void)
 {
-	SDA_OUT();//sdaÏßÊä³ö
+	SDA_OUT();//sdaï¿½ï¿½ï¿½ï¿½ï¿½
 	IIC_SCL=0;
 	IIC_SDA=0;//STOP:when CLK is high DATA change form low to high
  	delay_us(1);
 	IIC_SCL=1; 
-	IIC_SDA=1;//·¢ËÍI2C×ÜÏß½áÊøÐÅºÅ
+	IIC_SDA=1;//ï¿½ï¿½ï¿½ï¿½I2Cï¿½ï¿½ï¿½ß½ï¿½ï¿½ï¿½ï¿½Åºï¿½
 	delay_us(1);							   	
 }
 
 /**************************************************************************
 Function: IIC wait the response signal
 Input   : none
-Output  : 0£ºNo response received£»1£ºResponse received
-º¯Êý¹¦ÄÜ£ºIICµÈ´ýÓ¦´ðÐÅºÅ
-Èë¿Ú²ÎÊý£ºÎÞ
-·µ»Ø  Öµ£º0£ºÃ»ÓÐÊÕµ½Ó¦´ð£»1£ºÊÕµ½Ó¦´ð
+Output  : 0ï¿½ï¿½No response receivedï¿½ï¿½1ï¿½ï¿½Response received
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½IICï¿½È´ï¿½Ó¦ï¿½ï¿½ï¿½Åºï¿½
+ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½0ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Õµï¿½Ó¦ï¿½ï¿½1ï¿½ï¿½ï¿½Õµï¿½Ó¦ï¿½ï¿½
 **************************************************************************/
 int IIC_Wait_Ack(void)
 {
 	u8 ucErrTime=0;
-	SDA_IN();      //SDAÉèÖÃÎªÊäÈë  
+	SDA_IN();      //SDAï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½  
 	IIC_SDA=1;
 	delay_us(1);	   
 	IIC_SCL=1;
@@ -105,7 +105,7 @@ int IIC_Wait_Ack(void)
 		}
 	  delay_us(1);
 	}
-	IIC_SCL=0;//Ê±ÖÓÊä³ö0 	   
+	IIC_SCL=0;//Ê±ï¿½ï¿½ï¿½ï¿½ï¿½0 	   
 	return 1;  
 } 
 
@@ -113,9 +113,9 @@ int IIC_Wait_Ack(void)
 Function: IIC response
 Input   : none
 Output  : none
-º¯Êý¹¦ÄÜ£ºIICÓ¦´ð
-Èë¿Ú²ÎÊý£ºÎÞ
-·µ»Ø  Öµ£ºÎÞ
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½IICÓ¦ï¿½ï¿½
+ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½ï¿½ï¿½
 **************************************************************************/
 void IIC_Ack(void)
 {
@@ -132,9 +132,9 @@ void IIC_Ack(void)
 Function: IIC don't reply
 Input   : none
 Output  : none
-º¯Êý¹¦ÄÜ£ºIIC²»Ó¦´ð
-Èë¿Ú²ÎÊý£ºÎÞ
-·µ»Ø  Öµ£ºÎÞ
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½IICï¿½ï¿½Ó¦ï¿½ï¿½
+ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½ï¿½ï¿½
 **************************************************************************/    
 void IIC_NAck(void)
 {
@@ -148,17 +148,17 @@ void IIC_NAck(void)
 }
 /**************************************************************************
 Function: IIC sends a byte
-Input   : txd£ºByte data sent
+Input   : txdï¿½ï¿½Byte data sent
 Output  : none
-º¯Êý¹¦ÄÜ£ºIIC·¢ËÍÒ»¸ö×Ö½Ú
-Èë¿Ú²ÎÊý£ºtxd£º·¢ËÍµÄ×Ö½ÚÊý¾Ý
-·µ»Ø  Öµ£ºÎÞ
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½IICï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö½ï¿½
+ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½txdï¿½ï¿½ï¿½ï¿½ï¿½Íµï¿½ï¿½Ö½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½ï¿½ï¿½
 **************************************************************************/	  
 void IIC_Send_Byte(u8 txd)
 {                        
     u8 t;   
 	  SDA_OUT(); 	    
-    IIC_SCL=0;//À­µÍÊ±ÖÓ¿ªÊ¼Êý¾Ý´«Êä
+    IIC_SCL=0;//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½Ó¿ï¿½Ê¼ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ï¿½
     for(t=0;t<8;t++)
     {              
 			IIC_SDA=(txd&0x80)>>7;
@@ -173,11 +173,11 @@ void IIC_Send_Byte(u8 txd)
   
 /**************************************************************************
 Function: IIC write data to register
-Input   : addr£ºDevice address£»reg£ºRegister address£»len;Number of bytes£»data£ºData
-Output  : 0£ºWrite successfully£»1£ºFailed to write
-º¯Êý¹¦ÄÜ£ºIICÐ´Êý¾Ýµ½¼Ä´æÆ÷
-Èë¿Ú²ÎÊý£ºaddr£ºÉè±¸µØÖ·£»reg£º¼Ä´æÆ÷µØÖ·£»len;×Ö½ÚÊý£»data£ºÊý¾Ý
-·µ»Ø  Öµ£º0£º³É¹¦Ð´Èë£»1£ºÃ»ÓÐ³É¹¦Ð´Èë
+Input   : addrï¿½ï¿½Device addressï¿½ï¿½regï¿½ï¿½Register addressï¿½ï¿½len;Number of bytesï¿½ï¿½dataï¿½ï¿½Data
+Output  : 0ï¿½ï¿½Write successfullyï¿½ï¿½1ï¿½ï¿½Failed to write
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½IICÐ´ï¿½ï¿½ï¿½Ýµï¿½ï¿½Ä´ï¿½ï¿½ï¿½
+ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½addrï¿½ï¿½ï¿½è±¸ï¿½ï¿½Ö·ï¿½ï¿½regï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½len;ï¿½Ö½ï¿½ï¿½ï¿½ï¿½ï¿½dataï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½0ï¿½ï¿½ï¿½É¹ï¿½Ð´ï¿½ë£»1ï¿½ï¿½Ã»ï¿½Ð³É¹ï¿½Ð´ï¿½ï¿½
 **************************************************************************/
 int i2cWrite(uint8_t addr, uint8_t reg, uint8_t len, uint8_t *data)
 {
@@ -203,11 +203,11 @@ int i2cWrite(uint8_t addr, uint8_t reg, uint8_t len, uint8_t *data)
 }
 /**************************************************************************
 Function: IIC read register data
-Input   : addr£ºDevice address£»reg£ºRegister address£»len;Number of bytes£»*buf£ºData read out
-Output  : 0£ºRead successfully£»1£ºFailed to read
-º¯Êý¹¦ÄÜ£ºIIC¶Á¼Ä´æÆ÷µÄÊý¾Ý
-Èë¿Ú²ÎÊý£ºaddr£ºÉè±¸µØÖ·£»reg£º¼Ä´æÆ÷µØÖ·£»len;×Ö½ÚÊý£»*buf£º¶Á³öÊý¾Ý»º´æ
-·µ»Ø  Öµ£º0£º³É¹¦¶Á³ö£»1£ºÃ»ÓÐ³É¹¦¶Á³ö
+Input   : addrï¿½ï¿½Device addressï¿½ï¿½regï¿½ï¿½Register addressï¿½ï¿½len;Number of bytesï¿½ï¿½*bufï¿½ï¿½Data read out
+Output  : 0ï¿½ï¿½Read successfullyï¿½ï¿½1ï¿½ï¿½Failed to read
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½IICï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½addrï¿½ï¿½ï¿½è±¸ï¿½ï¿½Ö·ï¿½ï¿½regï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½len;ï¿½Ö½ï¿½ï¿½ï¿½ï¿½ï¿½*bufï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý»ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½0ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½Ã»ï¿½Ð³É¹ï¿½ï¿½ï¿½ï¿½ï¿½
 **************************************************************************/
 
 int i2cRead(uint8_t addr, uint8_t reg, uint8_t len, uint8_t *buf)
@@ -238,16 +238,16 @@ int i2cRead(uint8_t addr, uint8_t reg, uint8_t len, uint8_t *buf)
 
 /**************************************************************************
 Function: IIC reads a byte
-Input   : ack£ºSend response signal or not£»1£ºSend£»0£ºDo not send
-Output  : receive£ºData read
-º¯Êý¹¦ÄÜ£ºIIC¶ÁÈ¡Ò»¸öÎ»
-Èë¿Ú²ÎÊý£ºack£ºÊÇ·ñ·¢ËÍÓ¦´ðÐÅºÅ£»1£º·¢ËÍ£»0£º²»·¢ËÍ
-·µ»Ø  Öµ£ºreceive£º¶ÁÈ¡µÄÊý¾Ý
+Input   : ackï¿½ï¿½Send response signal or notï¿½ï¿½1ï¿½ï¿½Sendï¿½ï¿½0ï¿½ï¿½Do not send
+Output  : receiveï¿½ï¿½Data read
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½IICï¿½ï¿½È¡Ò»ï¿½ï¿½Î»
+ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½ackï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ÅºÅ£ï¿½1ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½receiveï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 **************************************************************************/ 
 u8 IIC_Read_Byte(unsigned char ack)
 {
 	unsigned char i,receive=0;
-	SDA_IN();//SDAÉèÖÃÎªÊäÈë
+	SDA_IN();//SDAï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½
     for(i=0;i<8;i++ )
 	 {
 			IIC_SCL=0; 
@@ -258,104 +258,104 @@ u8 IIC_Read_Byte(unsigned char ack)
 			delay_us(2); 
     }					 
     if (ack)
-        IIC_Ack(); //·¢ËÍACK 
+        IIC_Ack(); //ï¿½ï¿½ï¿½ï¿½ACK 
     else
-        IIC_NAck();//·¢ËÍnACK  
+        IIC_NAck();//ï¿½ï¿½ï¿½ï¿½nACK  
     return receive;
 }
 
 /**************************************************************************
 Function: IIC reads a byte
-Input   : I2C_Addr£ºDevice IIC address£»addr:Register address
-Output  : res£ºData read
-º¯Êý¹¦ÄÜ£º¶ÁÈ¡Ö¸¶¨Éè±¸Ö¸¶¨¼Ä´æÆ÷µÄÒ»¸öÖµ
-Èë¿Ú²ÎÊý£ºI2C_Addr£ºÉè±¸IICµØÖ·£»addr:¼Ä´æÆ÷µØÖ·
-·µ»Ø  Öµ£ºres£º¶ÁÈ¡µÄÊý¾Ý
+Input   : I2C_Addrï¿½ï¿½Device IIC addressï¿½ï¿½addr:Register address
+Output  : resï¿½ï¿½Data read
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½È¡Ö¸ï¿½ï¿½ï¿½è±¸Ö¸ï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Öµ
+ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½I2C_Addrï¿½ï¿½ï¿½è±¸IICï¿½ï¿½Ö·ï¿½ï¿½addr:ï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½Ö·
+ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½resï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 **************************************************************************/ 
 unsigned char I2C_ReadOneByte(unsigned char I2C_Addr,unsigned char addr)
 {
 	unsigned char res=0;
 	
 	IIC_Start();	
-	IIC_Send_Byte(I2C_Addr);	   //·¢ËÍÐ´ÃüÁî
+	IIC_Send_Byte(I2C_Addr);	   //ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½
 	res++;
 	IIC_Wait_Ack();
-	IIC_Send_Byte(addr); res++;  //·¢ËÍµØÖ·
+	IIC_Send_Byte(addr); res++;  //ï¿½ï¿½ï¿½Íµï¿½Ö·
 	IIC_Wait_Ack();	  
-	//IIC_Stop();//²úÉúÒ»¸öÍ£Ö¹Ìõ¼þ	
+	//IIC_Stop();//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Í£Ö¹ï¿½ï¿½ï¿½ï¿½	
 	IIC_Start();
-	IIC_Send_Byte(I2C_Addr+1); res++;          //½øÈë½ÓÊÕÄ£Ê½			   
+	IIC_Send_Byte(I2C_Addr+1); res++;          //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£Ê½			   
 	IIC_Wait_Ack();
 	res=IIC_Read_Byte(0);	   
-  IIC_Stop();//²úÉúÒ»¸öÍ£Ö¹Ìõ¼þ
+  IIC_Stop();//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Í£Ö¹ï¿½ï¿½ï¿½ï¿½
 
 	return res;
 }
  
 /**************************************************************************
 Function: IIC continuous reading data
-Input   : dev£ºTarget device IIC address£»reg:Register address£»
-					length£ºNumber of bytes£»*data:The pointer where the read data will be stored
-Output  : count£ºNumber of bytes read out-1
-º¯Êý¹¦ÄÜ£ºIICÁ¬Ðø¶ÁÊý¾Ý
-Èë¿Ú²ÎÊý£ºdev£ºÄ¿±êÉè±¸IICµØÖ·£»reg:¼Ä´æÆ÷µØÖ·£»length£º×Ö½ÚÊý£»
-					*data:¶Á³öµÄÊý¾Ý½«Òª´æ·ÅµÄÖ¸Õë
-·µ»Ø  Öµ£ºcount£º¶Á³öÀ´µÄ×Ö½ÚÊýÁ¿-1
+Input   : devï¿½ï¿½Target device IIC addressï¿½ï¿½reg:Register addressï¿½ï¿½
+					lengthï¿½ï¿½Number of bytesï¿½ï¿½*data:The pointer where the read data will be stored
+Output  : countï¿½ï¿½Number of bytes read out-1
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½IICï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½devï¿½ï¿½Ä¿ï¿½ï¿½ï¿½è±¸IICï¿½ï¿½Ö·ï¿½ï¿½reg:ï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½lengthï¿½ï¿½ï¿½Ö½ï¿½ï¿½ï¿½ï¿½ï¿½
+					*data:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý½ï¿½Òªï¿½ï¿½Åµï¿½Ö¸ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½countï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö½ï¿½ï¿½ï¿½ï¿½ï¿½-1
 **************************************************************************/ 
 u8 IICreadBytes(u8 dev, u8 reg, u8 length, u8 *data){
     u8 count = 0;
 	
 	IIC_Start();
-	IIC_Send_Byte(dev);	   //·¢ËÍÐ´ÃüÁî
+	IIC_Send_Byte(dev);	   //ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½
 	IIC_Wait_Ack();
-	IIC_Send_Byte(reg);   //·¢ËÍµØÖ·
+	IIC_Send_Byte(reg);   //ï¿½ï¿½ï¿½Íµï¿½Ö·
   IIC_Wait_Ack();	  
 	IIC_Start();
-	IIC_Send_Byte(dev+1);  //½øÈë½ÓÊÕÄ£Ê½	
+	IIC_Send_Byte(dev+1);  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£Ê½	
 	IIC_Wait_Ack();
 	
     for(count=0;count<length;count++){
 		 
-		 if(count!=length-1)   data[count]=IIC_Read_Byte(1);  //´øACKµÄ¶ÁÊý¾Ý
-		 else                  data[count]=IIC_Read_Byte(0);  //×îºóÒ»¸ö×Ö½ÚNACK
+		 if(count!=length-1)   data[count]=IIC_Read_Byte(1);  //ï¿½ï¿½ACKï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ï¿½
+		 else                  data[count]=IIC_Read_Byte(0);  //ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö½ï¿½NACK
 	}
-    IIC_Stop();//²úÉúÒ»¸öÍ£Ö¹Ìõ¼þ
+    IIC_Stop();//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Í£Ö¹ï¿½ï¿½ï¿½ï¿½
     return count;
 }
 /**************************************************************************
 Function: Writes multiple bytes to the specified register of the specified device
-Input   : dev£ºTarget device IIC address£»reg£ºRegister address£»length£ºNumber of bytes£»
-					*data£ºThe pointer where the read data will be stored
+Input   : devï¿½ï¿½Target device IIC addressï¿½ï¿½regï¿½ï¿½Register addressï¿½ï¿½lengthï¿½ï¿½Number of bytesï¿½ï¿½
+					*dataï¿½ï¿½The pointer where the read data will be stored
 Output  : 1
-º¯Êý¹¦ÄÜ£º½«¶à¸ö×Ö½ÚÐ´ÈëÖ¸¶¨Éè±¸Ö¸¶¨¼Ä´æÆ÷
-Èë¿Ú²ÎÊý£ºdev£ºÄ¿±êÉè±¸µØÖ·£»reg£º¼Ä´æÆ÷µØÖ·£»length£ºÒªÐ´µÄ×Ö½ÚÊý£»
-					*data£º½«ÒªÐ´µÄÊý¾ÝµÄÊ×µØÖ·
-·µ»Ø  Öµ£º1£º·µ»ØÊÇ·ñ³É¹¦
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö½ï¿½Ð´ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½è±¸Ö¸ï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½
+ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½devï¿½ï¿½Ä¿ï¿½ï¿½ï¿½è±¸ï¿½ï¿½Ö·ï¿½ï¿½regï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½lengthï¿½ï¿½ÒªÐ´ï¿½ï¿½ï¿½Ö½ï¿½ï¿½ï¿½ï¿½ï¿½
+					*dataï¿½ï¿½ï¿½ï¿½ÒªÐ´ï¿½ï¿½ï¿½ï¿½ï¿½Ýµï¿½ï¿½×µï¿½Ö·
+ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½É¹ï¿½
 **************************************************************************/ 
 u8 IICwriteBytes(u8 dev, u8 reg, u8 length, u8* data){
   
  	u8 count = 0;
 	IIC_Start();
-	IIC_Send_Byte(dev);	   //·¢ËÍÐ´ÃüÁî
+	IIC_Send_Byte(dev);	   //ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½
 	IIC_Wait_Ack();
-	IIC_Send_Byte(reg);   //·¢ËÍµØÖ·
+	IIC_Send_Byte(reg);   //ï¿½ï¿½ï¿½Íµï¿½Ö·
   IIC_Wait_Ack();	  
 	for(count=0;count<length;count++){
 		IIC_Send_Byte(data[count]); 
 		IIC_Wait_Ack(); 
 	 }
-	IIC_Stop();//²úÉúÒ»¸öÍ£Ö¹Ìõ¼þ
+	IIC_Stop();//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Í£Ö¹ï¿½ï¿½ï¿½ï¿½
 
     return 1; //status == 0;
 }
 
 /**************************************************************************
 Function: Reads a byte of the specified register of the specified device
-Input   : dev£ºTarget device IIC address£»reg£ºRegister address£»*data£ºThe pointer where the read data will be stored
+Input   : devï¿½ï¿½Target device IIC addressï¿½ï¿½regï¿½ï¿½Register addressï¿½ï¿½*dataï¿½ï¿½The pointer where the read data will be stored
 Output  : 1
-º¯Êý¹¦ÄÜ£º¶ÁÈ¡Ö¸¶¨Éè±¸Ö¸¶¨¼Ä´æÆ÷µÄÒ»¸öÖµ
-Èë¿Ú²ÎÊý£ºdev£ºÄ¿±êÉè±¸µØÖ·£»reg£º¼Ä´æÆ÷µØÖ·£»*data£º½«ÒªÐ´µÄÊý¾ÝµÄÊ×µØÖ·
-·µ»Ø  Öµ£º1£º·µ»ØÊÇ·ñ³É¹¦
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½È¡Ö¸ï¿½ï¿½ï¿½è±¸Ö¸ï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Öµ
+ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½devï¿½ï¿½Ä¿ï¿½ï¿½ï¿½è±¸ï¿½ï¿½Ö·ï¿½ï¿½regï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½*dataï¿½ï¿½ï¿½ï¿½ÒªÐ´ï¿½ï¿½ï¿½ï¿½ï¿½Ýµï¿½ï¿½×µï¿½Ö·
+ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½É¹ï¿½
 **************************************************************************/ 
 u8 IICreadByte(u8 dev, u8 reg, u8 *data){
 	*data=I2C_ReadOneByte(dev, reg);
@@ -364,11 +364,11 @@ u8 IICreadByte(u8 dev, u8 reg, u8 *data){
 
 /**************************************************************************
 Function: Write a byte to the specified register of the specified device
-Input   : dev£ºTarget device IIC address£»reg£ºRegister address£»data£ºData to be writtenwill be stored
+Input   : devï¿½ï¿½Target device IIC addressï¿½ï¿½regï¿½ï¿½Register addressï¿½ï¿½dataï¿½ï¿½Data to be writtenwill be stored
 Output  : 1
-º¯Êý¹¦ÄÜ£ºÐ´ÈëÖ¸¶¨Éè±¸Ö¸¶¨¼Ä´æÆ÷Ò»¸ö×Ö½Ú
-Èë¿Ú²ÎÊý£ºdev£ºÄ¿±êÉè±¸µØÖ·£»reg£º¼Ä´æÆ÷µØÖ·£»data£º½«ÒªÐ´µÄÊý¾Ý
-·µ»Ø  Öµ£º1
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½Ð´ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½è±¸Ö¸ï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö½ï¿½
+ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½devï¿½ï¿½Ä¿ï¿½ï¿½ï¿½è±¸ï¿½ï¿½Ö·ï¿½ï¿½regï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½dataï¿½ï¿½ï¿½ï¿½ÒªÐ´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½1
 **************************************************************************/ 
 unsigned char IICwriteByte(unsigned char dev, unsigned char reg, unsigned char data){
     return IICwriteBytes(dev, reg, 1, &data);
@@ -376,13 +376,13 @@ unsigned char IICwriteByte(unsigned char dev, unsigned char reg, unsigned char d
 
 /**************************************************************************
 Function: Read, modify, and write multiple bits in a byte of the specified device specified register
-Input   : dev£ºTarget device IIC address£»reg£ºRegister address£»length£ºNumber of bytes£»
-					bitStart£ºStart bit of target byte£»data£ºStores the value of the target byte bit to be changed
-Output  : 1£ºsuccess£»0£ºfail
-º¯Êý¹¦ÄÜ£º¶Á ÐÞ¸Ä Ð´ Ö¸¶¨Éè±¸ Ö¸¶¨¼Ä´æÆ÷Ò»¸ö×Ö½Ú ÖÐµÄ¶à¸öÎ»
-Èë¿Ú²ÎÊý£ºdev£ºÄ¿±êÉè±¸µØÖ·£»reg£º¼Ä´æÆ÷µØÖ·£»bitStart£ºÄ¿±ê×Ö½ÚµÄÆðÊ¼Î»£»
-					data£º´æ·Å¸Ä±äÄ¿±ê×Ö½ÚÎ»µÄÖµ
-·µ»Ø  Öµ£º1£º³É¹¦£»0£ºÊ§°Ü
+Input   : devï¿½ï¿½Target device IIC addressï¿½ï¿½regï¿½ï¿½Register addressï¿½ï¿½lengthï¿½ï¿½Number of bytesï¿½ï¿½
+					bitStartï¿½ï¿½Start bit of target byteï¿½ï¿½dataï¿½ï¿½Stores the value of the target byte bit to be changed
+Output  : 1ï¿½ï¿½successï¿½ï¿½0ï¿½ï¿½fail
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ ï¿½Þ¸ï¿½ Ð´ Ö¸ï¿½ï¿½ï¿½è±¸ Ö¸ï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö½ï¿½ ï¿½ÐµÄ¶ï¿½ï¿½Î»
+ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½devï¿½ï¿½Ä¿ï¿½ï¿½ï¿½è±¸ï¿½ï¿½Ö·ï¿½ï¿½regï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½bitStartï¿½ï¿½Ä¿ï¿½ï¿½ï¿½Ö½Úµï¿½ï¿½ï¿½Ê¼Î»ï¿½ï¿½
+					dataï¿½ï¿½ï¿½ï¿½Å¸Ä±ï¿½Ä¿ï¿½ï¿½ï¿½Ö½ï¿½Î»ï¿½ï¿½Öµ
+ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½1ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½0ï¿½ï¿½Ê§ï¿½ï¿½
 **************************************************************************/ 
 u8 IICwriteBits(u8 dev,u8 reg,u8 bitStart,u8 length,u8 data)
 {
@@ -403,13 +403,13 @@ u8 IICwriteBits(u8 dev,u8 reg,u8 bitStart,u8 length,u8 data)
 
 /**************************************************************************
 Function: Read, modify, and write one bit in a byte of the specified device specified register
-Input   : dev£ºTarget device IIC address£»reg£ºRegister address£»
-					bitNum£ºTo modify the bitnum bit of the target byte£»data£ºWhen it is 0, the target bit will be cleared, otherwise it will be set
-Output  : 1£ºsuccess£»0£ºfail
-º¯Êý¹¦ÄÜ£º¶Á ÐÞ¸Ä Ð´ Ö¸¶¨Éè±¸ Ö¸¶¨¼Ä´æÆ÷Ò»¸ö×Ö½Ú ÖÐµÄ1¸öÎ»
-Èë¿Ú²ÎÊý£ºdev£ºÄ¿±êÉè±¸µØÖ·£»reg£º¼Ä´æÆ÷µØÖ·£»bitNum£ºÒªÐÞ¸ÄÄ¿±ê×Ö½ÚµÄbitNumÎ»£»
-					data£ºÎª0Ê±£¬Ä¿±êÎ»½«±»Çå£¬·ñÔò½«±»ÖÃÎ»
-·µ»Ø  Öµ£º1£º³É¹¦£»0£ºÊ§°Ü
+Input   : devï¿½ï¿½Target device IIC addressï¿½ï¿½regï¿½ï¿½Register addressï¿½ï¿½
+					bitNumï¿½ï¿½To modify the bitnum bit of the target byteï¿½ï¿½dataï¿½ï¿½When it is 0, the target bit will be cleared, otherwise it will be set
+Output  : 1ï¿½ï¿½successï¿½ï¿½0ï¿½ï¿½fail
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ ï¿½Þ¸ï¿½ Ð´ Ö¸ï¿½ï¿½ï¿½è±¸ Ö¸ï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö½ï¿½ ï¿½Ðµï¿½1ï¿½ï¿½Î»
+ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½devï¿½ï¿½Ä¿ï¿½ï¿½ï¿½è±¸ï¿½ï¿½Ö·ï¿½ï¿½regï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½bitNumï¿½ï¿½Òªï¿½Þ¸ï¿½Ä¿ï¿½ï¿½ï¿½Ö½Úµï¿½bitNumÎ»ï¿½ï¿½
+					dataï¿½ï¿½Îª0Ê±ï¿½ï¿½Ä¿ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½å£¬ï¿½ï¿½ï¿½ò½«±ï¿½ï¿½ï¿½Î»
+ï¿½ï¿½ï¿½ï¿½  Öµï¿½ï¿½1ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½0ï¿½ï¿½Ê§ï¿½ï¿½
 **************************************************************************/ 
 u8 IICwriteBit(u8 dev, u8 reg, u8 bitNum, u8 data){
     u8 b;
