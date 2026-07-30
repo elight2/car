@@ -1,4 +1,4 @@
-// 日期：2026-07-30 17:29 - 方向取反，巡线逻辑不变
+// 日期：2026-07-30 17:45 - 添加中间6路停车线检测功能
 #include "headfile.h"
 #include "key.h"
 /*
@@ -96,20 +96,18 @@ int main(void) {
         if (a == 1 && is_running == 0) {
             is_running = 1;
             run_timer = 0;
+            set_stop_line_enable(1);  // 使能停车线检测
             
             OLED_ShowString(1, 1, "Running...  ");
             OLED_ShowString(2, 1, "Time:0.0s  ");
         }
 
         if (is_running == 1) {
-            // 循迹运行 - 每次循环都实时调整
-            track();
-            
-            // 更新OLED显示运行时间（每100ms更新一次）
-            static uint32_t last_display_time = 0;
-            if (run_timer - last_display_time >= 100) {
-                last_display_time = run_timer;
-                
+            // 先检测停车线（中间6路X2~X7同时检测到黑线）
+            if (check_stop_line()) {
+                pid_control(0, 0);  // 停车
+                is_running = 2;     // 进入停车状态
+                OLED_ShowString(1, 1, "Stop! Line! ");
                 uint32_t seconds = run_timer / 1000;
                 uint32_t tenths = (run_timer % 1000) / 100;
                 OLED_ShowString(2, 1, "Time:");
@@ -117,6 +115,23 @@ int main(void) {
                 OLED_ShowString(2, 8, ".");
                 OLED_ShowNum(2, 9, tenths, 1);
                 OLED_ShowString(2, 10, "s");
+            } else {
+                // 未检测到停车线，正常循迹
+                track();
+                
+                // 更新OLED显示运行时间（每100ms更新一次）
+                static uint32_t last_display_time = 0;
+                if (run_timer - last_display_time >= 100) {
+                    last_display_time = run_timer;
+                    
+                    uint32_t seconds = run_timer / 1000;
+                    uint32_t tenths = (run_timer % 1000) / 100;
+                    OLED_ShowString(2, 1, "Time:");
+                    OLED_ShowNum(2, 6, seconds, 2);
+                    OLED_ShowString(2, 8, ".");
+                    OLED_ShowNum(2, 9, tenths, 1);
+                    OLED_ShowString(2, 10, "s");
+                }
             }
         }
     }

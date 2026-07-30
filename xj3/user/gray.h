@@ -1,4 +1,4 @@
-// 日期：2026-07-30 17:13 - 重写转向逻辑
+// 日期：2026-07-30 17:45 - 添加中间6路停车线检测功能
 #ifndef __gray_track_h_
 #define __gray_track_h_
 #include "headfile.h"
@@ -27,5 +27,9 @@
 void gray_init(void);
 void track(void);
 unsigned char digtal(unsigned char channel);
+
+// 停车线检测
+uint8_t check_stop_line(void);
+void set_stop_line_enable(uint8_t enable);
 
 #endif

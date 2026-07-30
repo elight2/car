@@ -5,12 +5,12 @@
   C:\Keil_v5\ARM\ARMCLANG\include\stdint.h \
   C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h \
   ..\m0_sdk\source\third_party\CMSIS\Core\Include\core_cm0plus.h \
-  C:\Users\yzj\Desktop\05_jy61_jy61p_jy901_jy62\m0_sdk\source\third_party\CMSIS\Core\Include\cmsis_version.h \
-  C:\Users\yzj\Desktop\05_jy61_jy61p_jy901_jy62\m0_sdk\source\third_party\CMSIS\Core\Include\cmsis_compiler.h \
-  C:\Users\yzj\Desktop\05_jy61_jy61p_jy901_jy62\m0_sdk\source\third_party\CMSIS\Core\Include\cmsis_armclang.h \
+  C:\Users\yzj\Desktop\car\xj3\m0_sdk\source\third_party\CMSIS\Core\Include\cmsis_version.h \
+  C:\Users\yzj\Desktop\car\xj3\m0_sdk\source\third_party\CMSIS\Core\Include\cmsis_compiler.h \
+  C:\Users\yzj\Desktop\car\xj3\m0_sdk\source\third_party\CMSIS\Core\Include\cmsis_armclang.h \
   C:\Keil_v5\ARM\ARMCLANG\include\arm_compat.h \
   C:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h \
-  C:\Users\yzj\Desktop\05_jy61_jy61p_jy901_jy62\m0_sdk\source\third_party\CMSIS\Core\Include\mpu_armv7.h \
+  C:\Users\yzj\Desktop\car\xj3\m0_sdk\source\third_party\CMSIS\Core\Include\mpu_armv7.h \
   ..\m0_sdk\source\ti\devices\msp\peripherals\hw_adc12.h \
   ..\m0_sdk\source\ti\devices\msp\peripherals\hw_aes.h \
   ..\m0_sdk\source\ti\devices\msp\peripherals\hw_comp.h \

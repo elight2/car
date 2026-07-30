@@ -1,9 +1,38 @@
-// 日期：2026-07-30 17:13 - 重写转向逻辑
+// 日期：2026-07-30 17:45 - 添加中间6路停车线检测功能
 #include"headfile.h"
 #include <stdlib.h>
 
 // 循迹参数 - MAX_DUTY=10000
 #define STRAIGHT_SPEED 4000    // 直线速度 (40%占空比)
+
+// 停车线检测相关
+static uint8_t stop_line_enable = 0;  // 停车线检测使能
+static uint8_t stop_line_detected = 0; // 是否已检测到停车线
+
+// 设置停车线检测使能
+void set_stop_line_enable(uint8_t enable) {
+    stop_line_enable = enable;
+    if (!enable) {
+        stop_line_detected = 0; // 关闭使能时重置检测状态
+    }
+}
+
+// 检测中间6路（X2~X7）是否同时检测到黑线（停车线）
+// 返回值：1=检测到停车线，0=未检测到
+uint8_t check_stop_line(void) {
+    if (!stop_line_enable) return 0;    // 未使能，直接返回
+    if (stop_line_detected) return 1;   // 已经检测过了，保持返回1
+    
+    uint8_t d2 = D2, d3 = D3, d4 = D4, d5 = D5, d6 = D6, d7 = D7;
+    
+    // 中间6路（X2~X7）全部检测到黑线（=1），判定为停车线
+    if (d2 && d3 && d4 && d5 && d6 && d7) {
+        stop_line_detected = 1;
+        return 1;
+    }
+    
+    return 0;
+}
 
 void gray_init()
 {
