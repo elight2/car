@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "D:/EDA-Camera资源包/EDA-Camera资源包/软件源码"
+		},
+		{
+			"name": "ESP32S3-CAM",
+			"path": "D:/EDA-Camera资源包/EDA-Camera资源包/软件源码/ESP32S3-CAM/ESP32S3-CAM"
+		},
+		{
+			"name": "cream",
+			"path": "../../../Documents/PlatformIO/Projects/cream"
+		}
+	],
+	"settings": {}
+}
